@@ -3,7 +3,7 @@
 namespace PHPOrchestra\UserBundle\Form\Type;
 
 use FOS\UserBundle\Form\Type\RegistrationFormType;
-use PHPOrchestra\BackofficeBundle\EventSubscriber\AddSubmitButtonSubscriber;
+use PHPOrchestra\BaseBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
