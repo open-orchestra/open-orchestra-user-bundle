@@ -1,0 +1,10 @@
+parameters:
+    php_orchestra_user.display.login.class: PHPOrchestra\UserBundle\DisplayBlock\LoginStrategy
+
+services:
+    php_orchestra_user.display.login:
+        class: %php_orchestra_user.display.login.class%
+        arguments:
+            - @form.factory
+        tags:
+            - { name: php_orchestra_display.display_block.strategy }
