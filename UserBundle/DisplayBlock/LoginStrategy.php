@@ -4,8 +4,7 @@ namespace PHPOrchestra\UserBundle\DisplayBlock;
 
 use PHPOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
-use PHPOrchestra\UserBundle\Form\Type\LoginType;
-use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -15,14 +14,14 @@ class LoginStrategy extends AbstractStrategy
 {
     const LOGIN = 'login';
 
-    protected $formFactory;
+    protected $tokenManager;
 
     /**
-     * @param FormFactory $formFactory
+     * @param CsrfTokenManagerAdapter $tokenManager
      */
-    public function __construct(FormFactory $formFactory)
+    public function __construct(CsrfTokenManagerAdapter $tokenManager)
     {
-        $this->formFactory = $formFactory;
+        $this->tokenManager = $tokenManager;
     }
 
     /**
@@ -46,12 +45,11 @@ class LoginStrategy extends AbstractStrategy
      */
     public function show(BlockInterface $block)
     {
-        $form = $this->formFactory->create(new LoginType());
-
         return $this->render(
             'PHPOrchestraUserBundle:Security:loginForm.html.twig',
             array(
-                'form' => $form->createView(),
+                'csrf_token' => $this->tokenManager->generateCsrfToken('authenticate'),
+                'last_username' => ''
             )
         );
     }
