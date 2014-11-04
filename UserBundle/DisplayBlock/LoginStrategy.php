@@ -4,14 +4,27 @@ namespace PHPOrchestra\UserBundle\DisplayBlock;
 
 use PHPOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use PHPOrchestra\ModelBundle\Model\BlockInterface;
+use PHPOrchestra\UserBundle\Form\Type\LoginType;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class LoginBlockStrategy
+ * Class LoginStrategy
  */
-class LoginBlockStrategy extends AbstractStrategy
+class LoginStrategy extends AbstractStrategy
 {
     const LOGIN = 'login';
+
+    protected $formFactory;
+
+    /**
+     * @param FormFactory $formFactory
+     */
+    public function __construct(FormFactory $formFactory)
+    {
+        $this->formFactory = $formFactory;
+    }
+
     /**
      * Check if the strategy support this block
      *
@@ -33,8 +46,13 @@ class LoginBlockStrategy extends AbstractStrategy
      */
     public function show(BlockInterface $block)
     {
+        $form = $this->formFactory->create(new LoginType());
+
         return $this->render(
-            'PHPOrchestraUserBundle:Security:loginForm.html.twig'
+            'PHPOrchestraUserBundle:Security:loginForm.html.twig',
+            array(
+                'form' => $form->createView(),
+            )
         );
     }
 
