@@ -5,6 +5,7 @@ services:
     php_orchestra_user.display.login:
         class: %php_orchestra_user.display.login.class%
         arguments:
-            - @form.factory
+            - @form.csrf_provider
+            - @security.context
         tags:
             - { name: php_orchestra_display.display_block.strategy }
