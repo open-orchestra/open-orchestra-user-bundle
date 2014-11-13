@@ -25,6 +25,7 @@ class FormControllersTest extends WebTestCase
             array(
                 'PHP_AUTH_USER' => 'nicolas',
                 'PHP_AUTH_PW'   => 'nicolas',
+                'SYMFONY__SITE' =>  '1',
             )
         );
         $this->client->followRedirects();
