@@ -12,8 +12,8 @@ php_orchestra_user:
             edit:
                 success: Le rôle a été mis à jour
             name: Nom
-            from_status:
-            to_status:
+            from_status: Statut de provenance
+            to_status: Statut de destination
         user:
             success: L'utilisateur a été mis à jour
     new:
