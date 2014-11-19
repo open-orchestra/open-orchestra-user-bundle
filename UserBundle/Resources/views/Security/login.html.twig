@@ -1,5 +1,28 @@
 {% extends 'PHPOrchestraUserBundle::layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    {% include 'PHPOrchestraUserBundle:Security:loginForm.html.twig' %}
+    <div class="fos_user">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="smart-form client-form">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            <fieldset>
+                <section>
+                    <label class="label">{{ 'security.login.username'|trans }}</label>
+                    <label class="input"> <i class="icon-append fa fa-user"></i>
+                        <input type="login" id="username" name="_username" value="{{ last_username }}" required="required" />
+                    </label>
+                </section>
+
+                <section>
+                    <label class="label">{{ 'security.login.password'|trans }}</label>
+                    <label class="input"> <i class="icon-append fa fa-lock"></i>
+                        <input type="password" id="password" name="_password" required="required" />
+                    </label>
+                </section>
+            </fieldset>
+            <footer>
+                <input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            </footer>
+        </form>
+    </div>
 {% endblock %}
