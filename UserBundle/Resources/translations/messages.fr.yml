@@ -12,5 +12,9 @@ php_orchestra_user:
             edit:
                 success: Le rôle a été mis à jour
             name: Nom
+            from_status:
+            to_status:
+        user:
+            success: L'utilisateur a été mis à jour
     new:
         success: L'utilisateur a bien été créé.
