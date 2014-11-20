@@ -16,13 +16,13 @@ class LoadUserData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $nicolas = $this->generateNicolas();
+        $nicolas = $this->generate('nicolas', 'ROLE_FROM_PUBLISHED_TO_DRAFT');
         $manager->persist($nicolas);
 
-        $benjamin = $this->generateBenjamin();
+        $benjamin = $this->generate('benjamin', 'ROLE_FROM_DRAFT_TO_PENDING');
         $manager->persist($benjamin);
 
-        $noel = $this->generateNoel();
+        $noel = $this->generate('noel', 'ROLE_FROM_PENDING_TO_PUBLISHED');
         $manager->persist($noel);
 
         $manager->flush();
@@ -31,51 +31,17 @@ class LoadUserData implements FixtureInterface
     /**
      * @return User
      */
-    protected function generateNicolas()
+    protected function generate($name, $mainRole)
     {
         $nicolas = new User();
 
-        $nicolas->setUsername('nicolas');
-        $nicolas->setPlainPassword('nicolas');
+        $nicolas->setUsername($name);
+        $nicolas->setPlainPassword($name);
         $nicolas->addRole('ROLE_ADMIN');
         $nicolas->addRole('ROLE_USER');
-        $nicolas->addRole('ROLE_FROM_PUBLISHED_TO_DRAFT');
+        $nicolas->addRole($mainRole);
         $nicolas->setEnabled(true);
 
         return $nicolas;
-    }
-
-    /**
-     * @return User
-     */
-    protected function generateBenjamin()
-    {
-        $benjamin = new User();
-
-        $benjamin->setUsername('benjamin');
-        $benjamin->setPlainPassword('benjamin');
-        $benjamin->addRole('ROLE_ADMIN');
-        $benjamin->addRole('ROLE_USER');
-        $benjamin->addRole('ROLE_FROM_DRAFT_TO_PENDING');
-        $benjamin->setEnabled(true);
-
-        return $benjamin;
-    }
-
-    /**
-     * @return User
-     */
-    protected function generateNoel()
-    {
-        $noel = new User();
-
-        $noel->setUsername('noel');
-        $noel->setPlainPassword('noel');
-        $noel->addRole('ROLE_ADMIN');
-        $noel->addRole('ROLE_USER');
-        $noel->addRole('ROLE_FROM_PENDING_TO_PUBLISHED');
-        $noel->setEnabled(true);
-
-        return $noel;
     }
 }
