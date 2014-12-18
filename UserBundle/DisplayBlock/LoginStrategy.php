@@ -3,7 +3,7 @@
 namespace PHPOrchestra\UserBundle\DisplayBlock;
 
 use PHPOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
-use PHPOrchestra\ModelBundle\Model\BlockInterface;
+use PHPOrchestra\ModelInterface\Model\BlockInterface;
 use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContextInterface;
