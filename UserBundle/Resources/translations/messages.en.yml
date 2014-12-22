@@ -6,14 +6,6 @@ php_orchestra_user:
             first_name: First name
             last_name: Last name
             roles: Roles
-        role:
-            new:
-                success: The role has been successfully created
-            edit:
-                success: The role has been updated
-            name: Name
-            from_status: Status from
-            to_status: Status destination
         user:
             success: The user has been updated
     new:

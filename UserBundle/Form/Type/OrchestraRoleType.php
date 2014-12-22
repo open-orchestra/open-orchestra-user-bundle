@@ -2,7 +2,7 @@
 
 namespace PHPOrchestra\UserBundle\Form\Type;
 
-use PHPOrchestra\ModelBundle\Repository\RoleRepository;
+use PHPOrchestra\ModelInterface\Repository\RoleRepositoryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -14,9 +14,9 @@ class OrchestraRoleType extends AbstractType
     protected $roleRepository;
 
     /**
-     * @param RoleRepository $roleRepository
+     * @param RoleRepositoryInterface $roleRepository
      */
-    public function __construct(RoleRepository $roleRepository)
+    public function __construct(RoleRepositoryInterface $roleRepository)
     {
         $this->roleRepository = $roleRepository;
     }
