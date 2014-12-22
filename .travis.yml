@@ -6,6 +6,8 @@ cache:
   directories:
     - ~/.composer/cache
 
+sudo: false
+
 php:
   - 5.4
 
