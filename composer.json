@@ -10,7 +10,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/itkg/phporchestra-model-bundle"
+            "url": "https://github.com/itkg/phporchestra-model-interface"
         },
         {
             "type": "vcs",
@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "itkg/phporchestra-base-bundle": "dev-master",
-        "itkg/phporchestra-model-bundle": "dev-master",
+        "itkg/phporchestra-model-interface": "dev-master",
         "itkg/phporchestra-display-bundle": "dev-master",
         "phpunit/phpunit" : "4.0.14",
         "scrutinizer/ocular": "1.1.1",
