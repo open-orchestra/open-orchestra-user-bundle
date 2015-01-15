@@ -37,14 +37,7 @@ class UserController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $documentManager = $this->get('doctrine.odm.mongodb.document_manager');
-            $documentManager->persist($user);
-            $documentManager->flush();
-
-            $this->get('session')->getFlashBag()->add(
-                'success',
-                $this->get('translator')->trans('php_orchestra_user.new.success')
-            );
+            $this->saveUser($user);
 
             $url = $this->generateUrl('php_orchestra_user_user_form', array('userId' => $user->getId()));
 
@@ -81,18 +74,26 @@ class UserController extends Controller
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $documentManager = $this->get('doctrine.odm.mongodb.document_manager');
-            $documentManager->persist($user);
-            $documentManager->flush();
-
-            $this->get('session')->getFlashBag()->add(
-                'success',
-                $this->get('translator')->trans('php_orchestra_user.form.user.success')
-            );
+            $this->saveUser($user);
         }
 
         return $this->render('PHPOrchestraBackofficeBundle:Editorial:template.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @param $user
+     */
+    protected function saveUser($user)
+    {
+        $documentManager = $this->get('doctrine.odm.mongodb.document_manager');
+        $documentManager->persist($user);
+        $documentManager->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            $this->get('translator')->trans('php_orchestra_user.new.success')
+        );
     }
 }
