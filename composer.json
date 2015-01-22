@@ -26,9 +26,9 @@
         "friendsofsymfony/user-bundle": "~2.0"
     },
     "require-dev": {
-        "itkg/phporchestra-base-bundle": "dev-master",
-        "itkg/phporchestra-model-interface": "dev-master",
-        "itkg/phporchestra-display-bundle": "dev-master",
+        "itkg/phporchestra-base-bundle": "*",
+        "itkg/phporchestra-model-interface": "*",
+        "itkg/phporchestra-display-bundle": "*",
         "phpunit/phpunit" : "4.0.14",
         "scrutinizer/ocular": "1.1.1",
         "phake/phake": "2.0.0-beta2"
