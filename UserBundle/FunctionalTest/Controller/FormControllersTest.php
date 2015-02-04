@@ -38,6 +38,8 @@ class FormControllersTest extends WebTestCase
      */
     public function testForm($url)
     {
+        $this->markTestSkipped();
+
         $crawler = $this->client->request('GET', $url);
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
