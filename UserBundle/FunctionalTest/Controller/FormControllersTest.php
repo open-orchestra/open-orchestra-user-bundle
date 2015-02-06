@@ -25,32 +25,19 @@ class FormControllersTest extends WebTestCase
             array(
                 'PHP_AUTH_USER' => 'nicolas',
                 'PHP_AUTH_PW'   => 'nicolas',
-                'SYMFONY__SITE' =>  '1',
-            )
+            ),
+            array('HTTP_HOST' => 'echonext.phporchestra.dev')
         );
         $this->client->followRedirects();
     }
 
     /**
-     * @param string $url
-     *
-     * @dataProvider provideApiUrl
+     * Test user form
      */
-    public function testForm($url)
+    public function testForm()
     {
-        $crawler = $this->client->request('GET', $url);
+        $crawler = $this->client->request('GET', '/admin/user/new');
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * @return array
-     */
-    public function provideApiUrl()
-    {
-        return array(
-            array('/admin/user/new'),
-            array('/admin/role/new'),
-        );
     }
 }

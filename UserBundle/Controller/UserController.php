@@ -44,7 +44,7 @@ class UserController extends Controller
             return $this->redirect($url);
         }
 
-        return $this->render('PHPOrchestraBackofficeBundle:Editorial:template.html.twig', array(
+        return $this->render('PHPOrchestraUserBundle:Editorial:template.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -77,7 +77,7 @@ class UserController extends Controller
             $this->saveUser($user);
         }
 
-        return $this->render('PHPOrchestraBackofficeBundle:Editorial:template.html.twig', array(
+        return $this->render('PHPOrchestraUserBundle:Editorial:template.html.twig', array(
             'form' => $form->createView()
         ));
     }
