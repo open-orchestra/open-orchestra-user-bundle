@@ -2,9 +2,12 @@
 
 namespace PHPOrchestra\UserBundle\Controller;
 
+use FOS\UserBundle\Event\UserEvent;
 use PHPOrchestra\UserBundle\Document\User;
+use PHPOrchestra\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -41,6 +44,8 @@ class UserController extends Controller
 
             $url = $this->generateUrl('php_orchestra_user_user_form', array('userId' => $user->getId()));
 
+            $this->dispatchEvent(UserEvents::USER_CREATE, new UserEvent($user, $request));
+
             return $this->redirect($url);
         }
 
@@ -75,6 +80,7 @@ class UserController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $this->saveUser($user);
+            $this->dispatchEvent(UserEvents::USER_UPDATE, new UserEvent($user, $request));
         }
 
         return $this->render('PHPOrchestraUserBundle:Editorial:template.html.twig', array(
@@ -95,5 +101,14 @@ class UserController extends Controller
             'success',
             $this->get('translator')->trans('php_orchestra_user.new.success')
         );
+    }
+
+    /**
+     * @param string $eventName
+     * @param Event  $event
+     */
+    protected function dispatchEvent($eventName, $event)
+    {
+        $this->get('event_dispatcher')->dispatch($eventName, $event);
     }
 }
