@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Event;
+namespace OpenOrchestra\UserBundle\Event;
 
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\Event;

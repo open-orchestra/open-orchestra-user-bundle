@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\EventSubscriber;
+namespace OpenOrchestra\UserBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
@@ -17,7 +17,7 @@ class AddSubmitButtonSubscriber implements EventSubscriberInterface
     public function postSetData(FormEvent $event)
     {
         $form = $event->getForm();
-        $parameter = array('label' => 'php_orchestra_base.form.submit');
+        $parameter = array('label' => 'open_orchestra_base.form.submit');
 
         $form->add('submit', 'submit', $parameter);
     }

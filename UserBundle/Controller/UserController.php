@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Controller;
+namespace OpenOrchestra\UserBundle\Controller;
 
 use FOS\UserBundle\Event\UserEvent;
-use PHPOrchestra\UserBundle\Document\User;
-use PHPOrchestra\UserBundle\UserEvents;
+use OpenOrchestra\UserBundle\Document\User;
+use OpenOrchestra\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Component\EventDispatcher\Event;
@@ -21,7 +21,7 @@ class UserController extends Controller
     /**
      * @param Request $request
      *
-     * @Config\Route("/new", name="php_orchestra_user_new")
+     * @Config\Route("/new", name="open_orchestra_user_new")
      * @Config\Method({"GET", "POST"})
      *
      * @return Response
@@ -34,7 +34,7 @@ class UserController extends Controller
             'registration_user',
             $user,
             array(
-                'action' => $this->generateUrl('php_orchestra_user_new')
+                'action' => $this->generateUrl('open_orchestra_user_new')
             )
         );
 
@@ -42,14 +42,14 @@ class UserController extends Controller
         if ($form->isValid()) {
             $this->saveUser($user);
 
-            $url = $this->generateUrl('php_orchestra_user_user_form', array('userId' => $user->getId()));
+            $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $user->getId()));
 
             $this->dispatchEvent(UserEvents::USER_CREATE, new UserEvent($user, $request));
 
             return $this->redirect($url);
         }
 
-        return $this->render('PHPOrchestraUserBundle:Editorial:template.html.twig', array(
+        return $this->render('OpenOrchestraUserBundle:Editorial:template.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -58,20 +58,20 @@ class UserController extends Controller
      * @param Request $request
      * @param string  $userId
      *
-     * @Config\Route("/form/{userId}", name="php_orchestra_user_user_form")
+     * @Config\Route("/form/{userId}", name="open_orchestra_user_user_form")
      * @Config\Method({"GET", "POST"})
      *
      * @return Response
      */
     public function formAction(Request $request, $userId)
     {
-        $user = $this->get('php_orchestra_user.repository.user')->find($userId);
+        $user = $this->get('open_orchestra_user.repository.user')->find($userId);
 
         $form = $this->createForm(
             'user',
             $user,
             array(
-                'action' => $this->generateUrl('php_orchestra_user_user_form', array(
+                'action' => $this->generateUrl('open_orchestra_user_user_form', array(
                     'userId' => $userId,
                 ))
             )
@@ -83,7 +83,7 @@ class UserController extends Controller
             $this->dispatchEvent(UserEvents::USER_UPDATE, new UserEvent($user, $request));
         }
 
-        return $this->render('PHPOrchestraUserBundle:Editorial:template.html.twig', array(
+        return $this->render('OpenOrchestraUserBundle:Editorial:template.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -99,7 +99,7 @@ class UserController extends Controller
 
         $this->get('session')->getFlashBag()->add(
             'success',
-            $this->get('translator')->trans('php_orchestra_user.new.success')
+            $this->get('translator')->trans('open_orchestra_user.new.success')
         );
     }
 

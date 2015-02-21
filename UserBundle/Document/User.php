@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Document;
+namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;

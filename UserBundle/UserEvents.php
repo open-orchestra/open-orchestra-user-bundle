@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\UserBundle;
+namespace OpenOrchestra\UserBundle;
 
 /**
  * Class UserEvents

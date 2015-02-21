@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\DisplayBlock;
+namespace OpenOrchestra\UserBundle\DisplayBlock;
 
-use PHPOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
-use PHPOrchestra\ModelInterface\Model\BlockInterface;
+use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
+use OpenOrchestra\ModelInterface\Model\BlockInterface;
 use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -51,13 +51,13 @@ class LoginStrategy extends AbstractStrategy
     public function show(BlockInterface $block)
     {
         if( ($user = $this->securityContext->getToken()->getUser()) instanceof UserInterface) {
-            return $this->render('PHPOrchestraUserBundle:Security:userLogged.html.twig',array(
+            return $this->render('OpenOrchestraUserBundle:Security:userLogged.html.twig',array(
                 'user' => $user,
             ));
         }
 
         return $this->render(
-            'PHPOrchestraUserBundle:Security:loginForm.html.twig',
+            'OpenOrchestraUserBundle:Security:loginForm.html.twig',
             array(
                 'csrf_token' => $this->tokenManager->generateCsrfToken('authenticate'),
                 'last_username' => ''
