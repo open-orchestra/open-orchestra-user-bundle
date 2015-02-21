@@ -1,4 +1,4 @@
-php_orchestra_user:
+open_orchestra_user:
     login:
         title: Login
     form:

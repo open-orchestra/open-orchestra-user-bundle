@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Form\Type;
+namespace OpenOrchestra\UserBundle\Form\Type;
 
 use FOS\UserBundle\Form\Type\RegistrationFormType;
-use PHPOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
+use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -32,10 +32,10 @@ class RegistrationUserType extends RegistrationFormType
     {
         $builder
             ->add('firstName', 'text', array(
-                'label' => 'php_orchestra_user.form.registration_user.first_name'
+                'label' => 'open_orchestra_user.form.registration_user.first_name'
             ))
             ->add('lastName', 'text', array(
-                'label' => 'php_orchestra_user.form.registration_user.last_name'
+                'label' => 'open_orchestra_user.form.registration_user.last_name'
             ));
 
         parent::buildForm($builder, $options);
@@ -45,10 +45,10 @@ class RegistrationUserType extends RegistrationFormType
             'allow_add' => true,
             'allow_delete' => true,
             'attr' => array(
-                'data-prototype-label-add' => $this->translator->trans('php_orchestra_backoffice.form.field_option.add'),
-                'data-prototype-label-remove' => $this->translator->trans('php_orchestra_backoffice.form.field_option.delete'),
+                'data-prototype-label-add' => $this->translator->trans('open_orchestra_backoffice.form.field_option.add'),
+                'data-prototype-label-remove' => $this->translator->trans('open_orchestra_backoffice.form.field_option.delete'),
             ),
-            'label' => 'php_orchestra_user.form.registration_user.roles'
+            'label' => 'open_orchestra_user.form.registration_user.roles'
         ));
 
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());

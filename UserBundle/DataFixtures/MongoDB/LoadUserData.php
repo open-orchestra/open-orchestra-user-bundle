@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\DataFixtures\MongoDB;
+namespace OpenOrchestra\UserBundle\DataFixtures\MongoDB;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use PHPOrchestra\UserBundle\Document\User;
+use OpenOrchestra\UserBundle\Document\User;
 
 /**
  * Class LoadUserData

@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Form\Type;
+namespace OpenOrchestra\UserBundle\Form\Type;
 
-use PHPOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
+use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -34,9 +34,9 @@ class UserType extends AbstractType
             'allow_add' => true,
             'allow_delete' => true,
             'attr' => array(
-                'data-prototype-label-add' => $this->translator->trans('php_orchestra_backoffice.form.field_option.add'),
-                'data-prototype-label-new' => $this->translator->trans('php_orchestra_backoffice.form.field_option.new'),
-                'data-prototype-label-remove' => $this->translator->trans('php_orchestra_backoffice.form.field_option.delete'),
+                'data-prototype-label-add' => $this->translator->trans('open_orchestra_backoffice.form.field_option.add'),
+                'data-prototype-label-new' => $this->translator->trans('open_orchestra_backoffice.form.field_option.new'),
+                'data-prototype-label-remove' => $this->translator->trans('open_orchestra_backoffice.form.field_option.delete'),
             )
         ));
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
@@ -48,7 +48,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PHPOrchestra\UserBundle\Document\User'
+            'data_class' => 'OpenOrchestra\UserBundle\Document\User'
         ));
     }
 

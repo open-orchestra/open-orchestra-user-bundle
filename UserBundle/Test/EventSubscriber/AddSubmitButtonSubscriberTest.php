@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Test\EventSubscriber;
+namespace OpenOrchestra\UserBundle\Test\EventSubscriber;
 
 use Phake;
-use PHPOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
+use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\FormEvents;
 
 /**
@@ -55,6 +55,6 @@ class AddSubmitButtonSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->subscriber->postSetData($this->event);
 
-        Phake::verify($this->form)->add('submit', 'submit', array('label' => 'php_orchestra_base.form.submit'));
+        Phake::verify($this->form)->add('submit', 'submit', array('label' => 'open_orchestra_base.form.submit'));
     }
 }

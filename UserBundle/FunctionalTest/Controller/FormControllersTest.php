@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\FunctionalTest\Controller;
+namespace OpenOrchestra\UserBundle\FunctionalTest\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

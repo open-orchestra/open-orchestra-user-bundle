@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Test\Form\Type;
+namespace OpenOrchestra\UserBundle\Test\Form\Type;
 
 use Phake;
-use PHPOrchestra\UserBundle\Form\Type\RegistrationUserType;
+use OpenOrchestra\UserBundle\Form\Type\RegistrationUserType;
 
 /**
  * Class RegistrationUserTypeTest
@@ -17,7 +17,7 @@ class RegistrationUserTypeTest extends \PHPUnit_Framework_TestCase
 
     protected $string = 'string';
     protected $translator;
-    protected $class = 'PHPOrchestra\UserBundle\Document\User';
+    protected $class = 'OpenOrchestra\UserBundle\Document\User';
 
     /**
      * Set up the test

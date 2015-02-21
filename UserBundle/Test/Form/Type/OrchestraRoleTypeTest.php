@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Test\Form\Type;
+namespace OpenOrchestra\UserBundle\Test\Form\Type;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
-use PHPOrchestra\UserBundle\Form\Type\OrchestraRoleType;
+use OpenOrchestra\UserBundle\Form\Type\OrchestraRoleType;
 
 /**
  * Class OrchestraRoleTypeTest
@@ -25,16 +25,16 @@ class OrchestraRoleTypeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->role1 = Phake::mock('PHPOrchestra\ModelInterface\Model\RoleInterface');
+        $this->role1 = Phake::mock('OpenOrchestra\ModelInterface\Model\RoleInterface');
         Phake::when($this->role1)->getName()->thenReturn($this->role1Name);
-        $this->role2 = Phake::mock('PHPOrchestra\ModelInterface\Model\RoleInterface');
+        $this->role2 = Phake::mock('OpenOrchestra\ModelInterface\Model\RoleInterface');
         Phake::when($this->role2)->getName()->thenReturn($this->role2Name);
 
         $this->roles = new ArrayCollection();
         $this->roles->add($this->role1);
         $this->roles->add($this->role2);
 
-        $this->roleRepository = Phake::mock('PHPOrchestra\ModelInterface\Repository\RoleRepositoryInterface');
+        $this->roleRepository = Phake::mock('OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface');
         Phake::when($this->roleRepository)->findAll()->thenReturn($this->roles);
 
         $this->form = new OrchestraRoleType($this->roleRepository);

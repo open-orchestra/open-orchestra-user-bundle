@@ -1,11 +1,11 @@
 parameters:
-    php_orchestra_user.display.login.class: PHPOrchestra\UserBundle\DisplayBlock\LoginStrategy
+    open_orchestra_user.display.login.class: OpenOrchestra\UserBundle\DisplayBlock\LoginStrategy
 
 services:
-    php_orchestra_user.display.login:
-        class: %php_orchestra_user.display.login.class%
+    open_orchestra_user.display.login:
+        class: %open_orchestra_user.display.login.class%
         arguments:
             - @form.csrf_provider
             - @security.context
         tags:
-            - { name: php_orchestra_display.display_block.strategy }
+            - { name: open_orchestra_display.display_block.strategy }

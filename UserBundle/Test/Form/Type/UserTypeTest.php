@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPOrchestra\UserBundle\Test\Form\Type;
+namespace OpenOrchestra\UserBundle\Test\Form\Type;
 
 use Phake;
-use PHPOrchestra\UserBundle\Form\Type\UserType;
+use OpenOrchestra\UserBundle\Form\Type\UserType;
 
 /**
  * Class UserTypeTest
@@ -69,7 +69,7 @@ class UserTypeTest extends \PHPUnit_Framework_TestCase
         $this->form->setDefaultOptions($resolver);
 
         Phake::verify($resolver)->setDefaults(array(
-            'data_class' => 'PHPOrchestra\UserBundle\Document\User'
+            'data_class' => 'OpenOrchestra\UserBundle\Document\User'
         ));
     }
 }

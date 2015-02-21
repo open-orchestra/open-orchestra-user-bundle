@@ -1,13 +1,13 @@
 <?php
 
-namespace PHPOrchestra\UserBundle;
+namespace OpenOrchestra\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class PHPOrchestraUserBundle
+ * Class OpenOrchestraUserBundle
  */
-class PHPOrchestraUserBundle extends Bundle
+class OpenOrchestraUserBundle extends Bundle
 {
     /**
      * @return string
