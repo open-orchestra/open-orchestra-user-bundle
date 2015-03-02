@@ -25,6 +25,7 @@ class OpenOrchestraUserExtension extends Extension
         $loader->load('services.yml');
         $loader->load('form.yml');
         $loader->load('display.yml');
+        $loader->load('parameters.yml');
         $loader->load('twig.yml');
     }
 }
