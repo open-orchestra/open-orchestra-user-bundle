@@ -1,2 +1,0 @@
-parameters:
-    open_orchestra_user.base_layout: OpenOrchestraUserBundle::baseLayout.html.twig
