@@ -26,5 +26,9 @@ class OpenOrchestraUserExtension extends Extension
         $loader->load('services.yml');
         $loader->load('form.yml');
         $loader->load('display.yml');
+
+        if (!$container->hasParameter('open_orchestra_user.base_layout')) {
+            $container->setParameter('open_orchestra_user.base_layout', $config['base_layout']);
+        }
     }
 }
