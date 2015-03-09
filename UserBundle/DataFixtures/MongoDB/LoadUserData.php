@@ -17,6 +17,8 @@ class LoadUserData implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $nicolas = $this->generate('nicolas', 'ROLE_FROM_PUBLISHED_TO_DRAFT');
+        $nicolas->addRole('ROLE_FROM_DRAFT_TO_PENDING');
+        $nicolas->addRole('ROLE_FROM_PENDING_TO_PUBLISHED');
         $manager->persist($nicolas);
 
         $benjamin = $this->generate('benjamin', 'ROLE_FROM_DRAFT_TO_PENDING');
@@ -33,15 +35,15 @@ class LoadUserData implements FixtureInterface
      */
     protected function generate($name, $mainRole)
     {
-        $nicolas = new User();
+        $user = new User();
 
-        $nicolas->setUsername($name);
-        $nicolas->setPlainPassword($name);
-        $nicolas->addRole('ROLE_ADMIN');
-        $nicolas->addRole('ROLE_USER');
-        $nicolas->addRole($mainRole);
-        $nicolas->setEnabled(true);
+        $user->setUsername($name);
+        $user->setPlainPassword($name);
+        $user->addRole('ROLE_ADMIN');
+        $user->addRole('ROLE_USER');
+        $user->addRole($mainRole);
+        $user->setEnabled(true);
 
-        return $nicolas;
+        return $user;
     }
 }
