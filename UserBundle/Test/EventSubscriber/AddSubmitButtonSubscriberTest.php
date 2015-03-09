@@ -55,6 +55,6 @@ class AddSubmitButtonSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $this->subscriber->postSetData($this->event);
 
-        Phake::verify($this->form)->add('submit', 'submit', array('label' => 'open_orchestra_base.form.submit'));
+        Phake::verify($this->form)->add('submit', 'submit', array('label' => 'open_orchestra_base.form.submit', 'attr' => array('class' => 'submit_form')));
     }
 }
