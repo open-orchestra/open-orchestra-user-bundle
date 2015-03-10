@@ -3,7 +3,7 @@
 
 {% block fos_user_content %}
     <div class="fos_user">
-        <form action="{{ path("fos_user_security_check") }}" method="post" class="smart-form client-form">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="smart-form client-form redirectable-form">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             <fieldset>
                 <section>
