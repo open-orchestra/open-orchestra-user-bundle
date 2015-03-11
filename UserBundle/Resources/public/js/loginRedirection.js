@@ -1,6 +1,7 @@
 var form;
 forms = document.getElementsByClassName('redirectable-form');
-if (forms.length) {
-    form = forms[0];
+for (var i= 0; i < forms.length; i++)
+{
+    form = forms[i];
     form.setAttribute('action', form.getAttribute('action') + window.location.hash);
 }
