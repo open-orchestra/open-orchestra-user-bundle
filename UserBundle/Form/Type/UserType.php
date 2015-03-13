@@ -29,16 +29,6 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('roles', 'collection', array(
-            'type' => 'orchestra_role_choice',
-            'allow_add' => true,
-            'allow_delete' => true,
-            'attr' => array(
-                'data-prototype-label-add' => $this->translator->trans('open_orchestra_backoffice.form.field_option.add'),
-                'data-prototype-label-new' => $this->translator->trans('open_orchestra_backoffice.form.field_option.new'),
-                'data-prototype-label-remove' => $this->translator->trans('open_orchestra_backoffice.form.field_option.delete'),
-            )
-        ));
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
 

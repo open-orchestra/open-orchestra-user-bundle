@@ -55,7 +55,7 @@ class UserTypeTest extends \PHPUnit_Framework_TestCase
 
         $this->form->buildForm($builder, array());
 
-        Phake::verify($builder)->add(Phake::anyParameters());
+        Phake::verify($builder, Phake::never())->add(Phake::anyParameters());
         Phake::verify($builder)->addEventSubscriber(Phake::anyParameters());
     }
 
