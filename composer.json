@@ -35,7 +35,7 @@
     },
     "suggest": {
         "itkg/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
-    }
+    },
     "config" : {
         "bin-dir" : "bin"
     },
