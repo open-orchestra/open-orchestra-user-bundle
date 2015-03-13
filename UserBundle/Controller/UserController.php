@@ -30,20 +30,14 @@ class UserController extends Controller
     {
         $user = new User();
 
-        $form = $this->createForm(
-            'registration_user',
-            $user,
-            array(
-                'action' => $this->generateUrl('open_orchestra_user_new')
-            )
-        );
+        $form = $this->createForm('registration_user', $user, array(
+            'action' => $this->generateUrl('open_orchestra_user_new')
+        ));
 
         $form->handleRequest($request);
         if ($form->isValid()) {
             $this->saveUser($user);
-
             $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $user->getId()));
-
             $this->dispatchEvent(UserEvents::USER_CREATE, new UserEvent($user, $request));
 
             return $this->redirect($url);
@@ -67,15 +61,11 @@ class UserController extends Controller
     {
         $user = $this->get('open_orchestra_user.repository.user')->find($userId);
 
-        $form = $this->createForm(
-            'user',
-            $user,
-            array(
-                'action' => $this->generateUrl('open_orchestra_user_user_form', array(
-                    'userId' => $userId,
-                ))
-            )
-        );
+        $form = $this->createForm('user', $user, array(
+            'action' => $this->generateUrl('open_orchestra_user_user_form', array(
+                'userId' => $userId,
+            ))
+        ));
 
         $form->handleRequest($request);
         if ($form->isValid()) {
