@@ -8,23 +8,19 @@ use OpenOrchestra\UserBundle\Form\Type\UserType;
 /**
  * Class UserTypeTest
  */
-class UserTypeTest extends \PHPUnit_Framework_TestCase
+class UserTypeTest extends AbstractUserTypeTest
 {
     /**
      * @var UserType
      */
     protected $form;
 
-    protected $translator;
-
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->translator = Phake::mock('Symfony\Component\Translation\TranslatorInterface');
-        Phake::when($this->translator)->trans(Phake::anyParameters())->thenReturn('string');
-
+        parent::setUp();
         $this->form = new UserType($this->translator);
     }
 
@@ -49,14 +45,10 @@ class UserTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuilder()
     {
-        $builder = Phake::mock('Symfony\Component\Form\FormBuilder');
-        Phake::when($builder)->add(Phake::anyParameters())->thenReturn($builder);
-        Phake::when($builder)->addEventSubscriber(Phake::anyParameters())->thenReturn($builder);
+        $this->form->buildForm($this->builder, array());
 
-        $this->form->buildForm($builder, array());
-
-        Phake::verify($builder)->add(Phake::anyParameters());
-        Phake::verify($builder)->addEventSubscriber(Phake::anyParameters());
+        Phake::verify($this->builder, Phake::never())->add(Phake::anyParameters());
+        Phake::verify($this->builder)->addEventSubscriber(Phake::anyParameters());
     }
 
     /**
@@ -64,11 +56,9 @@ class UserTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetDefaultOptions()
     {
-        $resolver = Phake::mock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
+        $this->form->setDefaultOptions($this->resolver);
 
-        $this->form->setDefaultOptions($resolver);
-
-        Phake::verify($resolver)->setDefaults(array(
+        Phake::verify($this->resolver)->setDefaults(array(
             'data_class' => 'OpenOrchestra\UserBundle\Document\User'
         ));
     }

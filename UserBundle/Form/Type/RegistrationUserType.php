@@ -40,17 +40,6 @@ class RegistrationUserType extends RegistrationFormType
 
         parent::buildForm($builder, $options);
 
-        $builder->add('roles', 'collection', array(
-            'type' => 'orchestra_role_choice',
-            'allow_add' => true,
-            'allow_delete' => true,
-            'attr' => array(
-                'data-prototype-label-add' => $this->translator->trans('open_orchestra_backoffice.form.field_option.add'),
-                'data-prototype-label-remove' => $this->translator->trans('open_orchestra_backoffice.form.field_option.delete'),
-            ),
-            'label' => 'open_orchestra_user.form.registration_user.roles'
-        ));
-
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
 

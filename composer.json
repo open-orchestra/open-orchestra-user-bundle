@@ -28,11 +28,13 @@
     },
     "require-dev": {
         "itkg/open-orchestra-base-bundle": "dev-master",
-        "itkg/open-orchestra-model-interface": "dev-master",
         "itkg/open-orchestra-display-bundle": "dev-master",
         "phpunit/phpunit" : "4.0.14",
         "scrutinizer/ocular": "1.1.1",
         "phake/phake": "2.0.0-beta2"
+    },
+    "suggest": {
+        "itkg/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
     },
     "config" : {
         "bin-dir" : "bin"

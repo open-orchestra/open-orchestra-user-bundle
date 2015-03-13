@@ -28,6 +28,11 @@ class User extends BaseUser
     protected $firstName;
 
     /**
+     * @MongoDB\ReferenceMany(targetDocument="FOS\UserBundle\Model\GroupInterface")
+     */
+    protected $groups;
+
+    /**
      * Class constructor
      */
     public function __construct()
