@@ -8,15 +8,13 @@ use OpenOrchestra\UserBundle\Form\Type\RegistrationUserType;
 /**
  * Class RegistrationUserTypeTest
  */
-class RegistrationUserTypeTest extends \PHPUnit_Framework_TestCase
+class RegistrationUserTypeTest extends AbstractUserTypeTest
 {
     /**
      * @var RegistrationUserType
      */
     protected $form;
 
-    protected $string = 'string';
-    protected $translator;
     protected $class = 'OpenOrchestra\UserBundle\Document\User';
 
     /**
@@ -24,9 +22,7 @@ class RegistrationUserTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->translator = Phake::mock('Symfony\Component\Translation\TranslatorInterface');
-        Phake::when($this->translator)->trans(Phake::anyParameters())->thenReturn($this->string);
-
+        parent::setUp();
         $this->form = new RegistrationUserType($this->class, $this->translator);
     }
 
@@ -43,14 +39,10 @@ class RegistrationUserTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuilder()
     {
-        $builder = Phake::mock('Symfony\Component\Form\FormBuilder');
-        Phake::when($builder)->add(Phake::anyParameters())->thenReturn($builder);
-        Phake::when($builder)->addEventSubscriber(Phake::anyParameters())->thenReturn($builder);
+        $this->form->buildForm($this->builder, array());
 
-        $this->form->buildForm($builder, array());
-
-        Phake::verify($builder, Phake::times(5))->add(Phake::anyParameters());
-        Phake::verify($builder)->addEventSubscriber(Phake::anyParameters());
+        Phake::verify($this->builder, Phake::times(5))->add(Phake::anyParameters());
+        Phake::verify($this->builder)->addEventSubscriber(Phake::anyParameters());
     }
 
     /**
@@ -58,10 +50,8 @@ class RegistrationUserTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testResolver()
     {
-        $resolver = Phake::mock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
+        $this->form->setDefaultOptions($this->resolver);
 
-        $this->form->setDefaultOptions($resolver);
-
-        Phake::verify($resolver)->setDefaults(Phake::anyParameters());
+        Phake::verify($this->resolver)->setDefaults(Phake::anyParameters());
     }
 }
