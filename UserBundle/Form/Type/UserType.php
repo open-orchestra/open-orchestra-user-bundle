@@ -29,7 +29,34 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
+        $builder
+            ->add('firstName', 'text', array(
+                'label' => 'open_orchestra_user.form.user.firstName'
+            ))
+            ->add('lastName', 'text', array(
+                'label' => 'open_orchestra_user.form.user.lastName'
+            ))
+            ->add('email', 'text', array(
+                'label' => 'open_orchestra_user.form.user.email'
+            ))
+            ->add('plainPassword', 'repeated', array(
+                'type' => 'password',
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array('label' => 'open_orchestra_user.form.user.password'),
+                'second_options' => array('label' => 'open_orchestra_user.form.user.password_confirmation'),
+                'invalid_message' => 'open_orchestra_user.form.user.password_mismatch',
+            ))
+            ->add('groups', 'document', array(
+                'class' => 'FOS\UserBundle\Model\GroupInterface',
+                'property' => 'name',
+                'label' => 'open_orchestra_user.form.user.groups',
+                'multiple' => true,
+                'expanded' => true
+            ))
+            ->add('language', 'orchestra_language', array(
+                'label' => 'open_orchestra_user.form.user.language'
+            ))
+            ->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
 
     /**
