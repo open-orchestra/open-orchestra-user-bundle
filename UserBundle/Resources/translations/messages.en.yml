@@ -7,6 +7,14 @@ open_orchestra_user:
             last_name: Last name
             roles: Roles
         user:
+            firstName: First name
+            lastName: Last name
+            email: Email
+            password: Password
+            password_confirmation: Password confirmation
+            password_mismatch: Password mismatch
+            groups: Groups
+            language: Default language
             success: The user has been updated
     new:
         success: The user has been created
