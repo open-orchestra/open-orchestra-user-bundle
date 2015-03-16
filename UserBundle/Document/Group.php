@@ -3,15 +3,15 @@
 namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @MongoDB\Document(collection="group")
+ * @ODM\Document(collection="group")
  */
 class Group extends BaseGroup
 {
     /**
-     * @MongoDB\Id(strategy="auto")
+     * @ODM\Id(strategy="auto")
      */
     protected $id;
 }
