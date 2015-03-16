@@ -46,13 +46,6 @@ class UserType extends AbstractType
                 'second_options' => array('label' => 'open_orchestra_user.form.user.password_confirmation'),
                 'invalid_message' => 'open_orchestra_user.form.user.password_mismatch',
             ))
-            ->add('groups', 'document', array(
-                'class' => 'FOS\UserBundle\Model\GroupInterface',
-                'property' => 'name',
-                'label' => 'open_orchestra_user.form.user.groups',
-                'multiple' => true,
-                'expanded' => true
-            ))
             ->add('language', 'orchestra_language', array(
                 'label' => 'open_orchestra_user.form.user.language'
             ))
