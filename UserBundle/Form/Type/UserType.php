@@ -13,13 +13,16 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class UserType extends AbstractType
 {
+    protected $class;
     protected $translator;
 
     /**
+     * @param string              $class
      * @param TranslatorInterface $translator
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct($class, TranslatorInterface $translator)
     {
+        $this->class = $class;
         $this->translator = $translator;
     }
 
@@ -58,7 +61,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OpenOrchestra\UserBundle\Document\User'
+            'data_class' => $this->class
         ));
     }
 

@@ -15,21 +15,15 @@ class UserTypeTest extends AbstractUserTypeTest
      */
     protected $form;
 
+    protected $class = 'OpenOrchestra\UserBundle\Document\User';
+
     /**
      * Set up the test
      */
     public function setUp()
     {
         parent::setUp();
-        $this->form = new UserType($this->translator);
-    }
-
-    /**
-     * Test instance
-     */
-    public function testInstance()
-    {
-        $this->assertInstanceOf('Symfony\Component\Form\AbstractType', $this->form);
+        $this->form = new UserType($this->class, $this->translator);
     }
 
     /**
@@ -52,14 +46,12 @@ class UserTypeTest extends AbstractUserTypeTest
     }
 
     /**
-     * Test resolver
+     * Test setDefaultOptions
      */
-    public function testSetDefaultOptions()
+    public function testResolver()
     {
         $this->form->setDefaultOptions($this->resolver);
 
-        Phake::verify($this->resolver)->setDefaults(array(
-            'data_class' => 'OpenOrchestra\UserBundle\Document\User'
-        ));
+        Phake::verify($this->resolver)->setDefaults(Phake::anyParameters());
     }
 }

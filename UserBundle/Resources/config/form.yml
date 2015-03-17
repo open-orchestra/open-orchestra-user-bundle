@@ -7,6 +7,7 @@ services:
     open_orchestra_user.type.user:
         class: %open_orchestra_user.type.user.class%
         arguments:
+            - %open_orchestra_user.document.user.class%
             - @translator
         tags:
             - { name: form.type, alias: user}
