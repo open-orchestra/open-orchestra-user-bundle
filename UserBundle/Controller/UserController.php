@@ -32,7 +32,7 @@ class UserController extends Controller
         $user = new User();
         $url = $this->generateUrl('open_orchestra_user_new');
         $event = UserEvents::USER_CREATE;
-        $form = $this->handleForm($request, $user, $url, $event);
+        $form = $this->handleForm($request, 'registration_user', $user, $url, $event);
         if ($form->isValid()) {
             $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $user->getId()));
             return $this->redirect($url);
@@ -54,21 +54,23 @@ class UserController extends Controller
         $user = $this->get('open_orchestra_user.repository.user')->find($userId);
         $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $userId));
         $event = UserEvents::USER_UPDATE;
-        $form = $this->handleForm($request, $user, $url, $event);
+        $form = $this->handleForm($request, 'user', $user, $url, $event);
 
         return $this->renderForm($form);
     }
 
     /**
-     * @param User   $user
-     * @param string $url
-     * @param srting $event
+     * @param Request $request
+     * @param string  $formName
+     * @param User    $user
+     * @param string  $url
+     * @param srting  $event
      *
      * @return Form
      */
-    protected function handleForm(Request $request, User $user, $url, $event)
+    protected function handleForm(Request $request, $formName, User $user, $url, $event)
     {
-        $form = $this->createForm('registration_user', $user, array(
+        $form = $this->createForm($formName, $user, array(
             'action' => $url
         ));
 

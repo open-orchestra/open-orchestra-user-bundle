@@ -1,8 +1,16 @@
 parameters:
+    open_orchestra_user.type.user.class: OpenOrchestra\UserBundle\Form\Type\UserType
     open_orchestra_user.type.registration_user.class: OpenOrchestra\UserBundle\Form\Type\RegistrationUserType
     open_orchestra_user.type.orchestra_role_choice.class: OpenOrchestra\UserBundle\Form\Type\OrchestraRoleType
 
 services:
+    open_orchestra_user.type.user:
+        class: %open_orchestra_user.type.user.class%
+        arguments:
+            - %open_orchestra_user.document.user.class%
+            - @translator
+        tags:
+            - { name: form.type, alias: user}
     open_orchestra_user.type.registration_user:
         class: %open_orchestra_user.type.registration_user.class%
         arguments:
