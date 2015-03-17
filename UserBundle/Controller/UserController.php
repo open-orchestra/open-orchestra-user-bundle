@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\UserBundle\Controller;
 
-use FOS\UserBundle\Event\UserEvent;
+use OpenOrchestra\UserBundle\Event\UserEvent;
 use OpenOrchestra\UserBundle\Document\User;
 use OpenOrchestra\UserBundle\UserEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
