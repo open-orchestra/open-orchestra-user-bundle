@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Form;
 
 /**
  * Class UserController
@@ -29,23 +30,14 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $user = new User();
-
-        $form = $this->createForm('registration_user', $user, array(
-            'action' => $this->generateUrl('open_orchestra_user_new')
-        ));
-
-        $form->handleRequest($request);
+        $url = $this->generateUrl('open_orchestra_user_new');
+        $event = UserEvents::USER_CREATE;
+        $form = $this->handleForm($request, $user, $url, $event);
         if ($form->isValid()) {
-            $this->saveUser($user);
             $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $user->getId()));
-            $this->dispatchEvent(UserEvents::USER_CREATE, new UserEvent($user, $request));
-
             return $this->redirect($url);
         }
-
-        return $this->render('OpenOrchestraUserBundle:Editorial:template.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->renderForm($form);
     }
 
     /**
@@ -60,19 +52,42 @@ class UserController extends Controller
     public function formAction(Request $request, $userId)
     {
         $user = $this->get('open_orchestra_user.repository.user')->find($userId);
+        $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $userId));
+        $event = UserEvents::USER_UPDATE;
+        $form = $this->handleForm($request, $user, $url, $event);
 
-        $form = $this->createForm('user', $user, array(
-            'action' => $this->generateUrl('open_orchestra_user_user_form', array(
-                'userId' => $userId,
-            ))
+        return $this->renderForm($form);
+    }
+
+    /**
+     * @param User   $user
+     * @param string $url
+     * @param srting $event
+     *
+     * @return Form
+     */
+    protected function handleForm(Request $request, User $user, $url, $event)
+    {
+        $form = $this->createForm('registration_user', $user, array(
+            'action' => $url
         ));
 
         $form->handleRequest($request);
         if ($form->isValid()) {
             $this->saveUser($user);
-            $this->dispatchEvent(UserEvents::USER_UPDATE, new UserEvent($user, $request));
+            $this->dispatchEvent($event, new UserEvent($user, $request));
         }
 
+        return $form;
+    }
+
+    /**
+     * @param Form $form
+     *
+     * @return Response
+     */
+    protected function renderForm(Form $form)
+    {
         return $this->render('OpenOrchestraUserBundle:Editorial:template.html.twig', array(
             'form' => $form->createView()
         ));
