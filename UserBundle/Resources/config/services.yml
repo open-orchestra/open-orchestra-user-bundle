@@ -1,6 +1,8 @@
 parameters:
     open_orchestra_user.repository.user.class: OpenOrchestra\UserBundle\Repository\UserRepository
     open_orchestra_user.document.user.class: OpenOrchestra\UserBundle\Document\User
+    open_orchestra_user.repository.group.class: OpenOrchestra\UserBundle\Repository\GroupRepository
+    open_orchestra_user.document.group.class: OpenOrchestra\UserBundle\Document\Group
 
 services:
     open_orchestra_user.repository.user:
@@ -9,3 +11,9 @@ services:
         factory_method: getRepository
         arguments:
             - %open_orchestra_user.document.user.class%
+    open_orchestra_user.repository.group:
+        class: %open_orchestra_user.repository.group.class%
+        factory_service: doctrine.odm.mongodb.document_manager
+        factory_method: getRepository
+        arguments:
+            - %open_orchestra_user.document.group.class%
