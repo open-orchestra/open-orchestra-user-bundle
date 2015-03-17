@@ -35,8 +35,10 @@ class UserController extends Controller
         $form = $this->handleForm($request, 'registration_user', $user, $url, $event);
         if ($form->isValid()) {
             $url = $this->generateUrl('open_orchestra_user_user_form', array('userId' => $user->getId()));
+
             return $this->redirect($url);
         }
+
         return $this->renderForm($form);
     }
 
@@ -64,7 +66,7 @@ class UserController extends Controller
      * @param string  $formName
      * @param User    $user
      * @param string  $url
-     * @param srting  $event
+     * @param string  $event
      *
      * @return Form
      */
