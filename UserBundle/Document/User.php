@@ -3,37 +3,43 @@
 namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
  * Document User
  *
- * @MongoDB\Document(collection="user")
+ * @ODM\Document(collection="user")
  */
 class User extends BaseUser
 {
     /**
-     * @MongoDB\Id()
+     * @ODM\Id()
      */
     protected $id;
 
     /**
      * @var string $lastName
+     *
+     * @ODM\Field(type="string")
      */
     protected $lastName;
 
     /**
      * @var string $firstName
+     *
+     * @ODM\Field(type="string")
      */
     protected $firstName;
 
     /**
      * @var string $language
+     *
+     * @ODM\Field(type="string")
      */
     protected $language;
 
     /**
-     * @MongoDB\ReferenceMany(targetDocument="FOS\UserBundle\Model\GroupInterface")
+     * @ODM\ReferenceMany(targetDocument="FOS\UserBundle\Model\GroupInterface")
      */
     protected $groups;
 

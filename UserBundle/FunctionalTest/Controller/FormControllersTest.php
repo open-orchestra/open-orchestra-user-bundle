@@ -36,7 +36,7 @@ class FormControllersTest extends WebTestCase
      */
     public function testForm()
     {
-        $crawler = $this->client->request('GET', '/admin/user/new');
+        $this->client->request('GET', '/admin/user/new');
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
