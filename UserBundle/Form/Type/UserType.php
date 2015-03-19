@@ -41,9 +41,6 @@ class UserType extends AbstractType
         $builder->add('email', 'email', array(
             'label' => 'open_orchestra_user.form.user.email'
         ));
-        $builder->add('language', 'orchestra_language', array(
-            'label' => 'open_orchestra_user.form.user.language'
-        ));
 
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
