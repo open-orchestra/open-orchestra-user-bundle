@@ -40,11 +40,6 @@ class RegistrationUserType extends RegistrationFormType
 
         parent::buildForm($builder, $options);
 
-        $builder
-            ->add('language', 'orchestra_language', array(
-                'label' => 'open_orchestra_user.form.user.language'
-            ));
-
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
 
