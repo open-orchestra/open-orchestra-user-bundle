@@ -25,6 +25,8 @@ class UserController extends Controller
      * @Config\Route("/new", name="open_orchestra_user_new")
      * @Config\Method({"GET", "POST"})
      *
+     * @Config\Security("has_role('ROLE_PANEL_USER')")
+     *
      * @return Response
      */
     public function newAction(Request $request)
@@ -48,6 +50,8 @@ class UserController extends Controller
      *
      * @Config\Route("/form/{userId}", name="open_orchestra_user_user_form")
      * @Config\Method({"GET", "POST"})
+     *
+     * @Config\Security("has_role('ROLE_PANEL_USER')")
      *
      * @return Response
      */
