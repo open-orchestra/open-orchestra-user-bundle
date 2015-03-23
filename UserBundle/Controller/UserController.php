@@ -96,7 +96,7 @@ class UserController extends Controller
      */
     protected function renderForm(Form $form)
     {
-        return $this->render('OpenOrchestraUserBundle:Editorial:template.html.twig', array(
+        return $this->render('OpenOrchestraUserBundle::form.html.twig', array(
             'form' => $form->createView()
         ));
     }
