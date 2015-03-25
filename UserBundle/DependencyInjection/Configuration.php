@@ -25,7 +25,9 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
 
         $rootNode->children()
-            ->scalarNode('base_layout')->defaultValue('OpenOrchestraUserBundle::baseLayout.html.twig')->end();
+            ->scalarNode('base_layout')->defaultValue('OpenOrchestraUserBundle::baseLayout.html.twig')->end()
+            ->scalarNode('form_template')->defaultValue('OpenOrchestraUserBundle::form.html.twig')->end()
+        ;
 
         return $treeBuilder;
     }

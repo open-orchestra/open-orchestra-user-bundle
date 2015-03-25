@@ -18,3 +18,5 @@ open_orchestra_user:
             success: The user has been updated
     new:
         success: The user has been created
+    update:
+        success: The user has been updated

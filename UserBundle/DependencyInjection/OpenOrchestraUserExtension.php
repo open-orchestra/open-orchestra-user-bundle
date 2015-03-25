@@ -33,6 +33,9 @@ class OpenOrchestraUserExtension extends Extension
         if (!$container->hasParameter('open_orchestra_user.base_layout')) {
             $container->setParameter('open_orchestra_user.base_layout', $config['base_layout']);
         }
+        if (!$container->hasParameter('open_orchestra_user.form_template')) {
+            $container->setParameter('open_orchestra_user.form_template', $config['form_template']);
+        }
     }
 
     /**

@@ -96,7 +96,7 @@ class UserController extends Controller
      */
     protected function renderForm(Form $form)
     {
-        return $this->render('OpenOrchestraUserBundle::form.html.twig', array(
+        return $this->render($this->container->getParameter('open_orchestra_user.form_template'), array(
             'form' => $form->createView()
         ));
     }
@@ -104,15 +104,17 @@ class UserController extends Controller
     /**
      * @param $user
      */
-    protected function saveUser($user)
+    protected function saveUser(User $user)
     {
+        $type = $user->getId() ? 'update' : 'new';
+
         $documentManager = $this->get('doctrine.odm.mongodb.document_manager');
         $documentManager->persist($user);
         $documentManager->flush();
 
         $this->get('session')->getFlashBag()->add(
             'success',
-            $this->get('translator')->trans('open_orchestra_user.new.success')
+            $this->get('translator')->trans('open_orchestra_user.'.$type.'.success')
         );
     }
 

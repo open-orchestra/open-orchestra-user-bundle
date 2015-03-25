@@ -18,3 +18,5 @@ open_orchestra_user:
             success: L'utilisateur a été mis à jour
     new:
         success: L'utilisateur a bien été créé.
+    update:
+        success: L'utilisateur a bien été mis à jour.
