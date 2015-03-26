@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\UserBundle\Test\EventSubscriber;
+namespace OpenOrchestra\UserBundle\Tests\EventSubscriber;
 
 use Phake;
 use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;

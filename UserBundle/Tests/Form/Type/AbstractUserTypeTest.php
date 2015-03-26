@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\UserBundle\Test\Form\Type;
+namespace OpenOrchestra\UserBundle\Tests\Form\Type;
 
 use Phake;
 
