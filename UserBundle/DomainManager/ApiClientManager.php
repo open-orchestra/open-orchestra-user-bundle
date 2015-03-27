@@ -39,7 +39,7 @@ class ApiClientManager
     }
 
     /**
-     * @param int $id
+     * @param mixed $id
      *
      * @return ApiClient
      */
