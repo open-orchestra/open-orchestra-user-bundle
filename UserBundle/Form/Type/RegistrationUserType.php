@@ -12,18 +12,6 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class RegistrationUserType extends RegistrationFormType
 {
-    protected $translator;
-
-    /**
-     * @param string              $class
-     * @param TranslatorInterface $translator
-     */
-    public function __construct($class, TranslatorInterface $translator)
-    {
-        parent::__construct($class);
-        $this->translator = $translator;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
