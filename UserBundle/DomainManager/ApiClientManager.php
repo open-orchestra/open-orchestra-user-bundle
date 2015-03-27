@@ -37,6 +37,18 @@ class ApiClientManager
         $apiClientClass = $this->class;
         return new $apiClientClass();
     }
+
+    /**
+     * @param int $id
+     *
+     * @return ApiClient
+     */
+    public function load($id)
+    {
+        $repository = $this->om->getRepository($this->class);
+
+        return $repository->find($id);
+    }
     /**
      * @param ApiClient $apiClient
      */
