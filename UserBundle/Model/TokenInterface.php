@@ -3,6 +3,7 @@
 namespace OpenOrchestra\UserBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\ValidatorInterface;
 
 /**
  * Class TokenInterface
@@ -46,4 +47,11 @@ interface TokenInterface extends BlockableInterface, ExpireableInterface
      * @return TokenInterface
      */
     public static function create(UserInterface $user = null, ApiClientInterface $client);
+
+    /**
+     * @param ValidatorInterface $validator
+     *
+     * @return boolean
+     */
+    public function isValid(ValidatorInterface $validator);
 }

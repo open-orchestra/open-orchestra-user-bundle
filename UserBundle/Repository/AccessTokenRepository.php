@@ -19,7 +19,24 @@ class AccessTokenRepository extends DocumentRepository
      */
     public function findOneByClientWithoutUser(ApiClientInterface $client)
     {
-        return $this->findOneBy(array());
+        $qb = $this->createQueryBuilder();
+
+        $qb->field('client.$id')->equals($client->getId());
+        $qb->field('user')->equals(null);
+        $qb->sort('createdAt', 'desc');
+        $qb->limit(1);
+
+        return $qb->getQuery()->getSingleResult();
+    }
+
+    /**
+     * @param string $token
+     *
+     * @return TokenInterface
+     */
+    public function findOneByCode($token)
+    {
+        return $this->findOneBy(array('code' => $token));
     }
 
     /**

@@ -8,7 +8,10 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 /**
  * Document User
  *
- * @ODM\Document(collection="user")
+ * @ODM\Document(
+ *  collection="user",
+ *  repositoryClass="OpenOrchestra\UserBundle\Repository\UserRepository"
+ * )
  */
 class User extends BaseUser
 {
