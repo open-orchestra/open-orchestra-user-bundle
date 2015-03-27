@@ -48,11 +48,17 @@ class AccessToken implements TokenInterface
     protected $client;
 
     /**
+     * @ODM\Date
+     */
+    protected $createdAt;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->code = $this->generateId();
+        $this->createdAt = new \DateTime();
     }
 
     /**
