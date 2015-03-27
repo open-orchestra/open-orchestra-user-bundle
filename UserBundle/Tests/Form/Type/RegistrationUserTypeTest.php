@@ -23,7 +23,7 @@ class RegistrationUserTypeTest extends AbstractUserTypeTest
     public function setUp()
     {
         parent::setUp();
-        $this->form = new RegistrationUserType($this->class, $this->translator);
+        $this->form = new RegistrationUserType($this->class);
     }
 
     /**

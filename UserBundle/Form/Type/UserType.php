@@ -14,16 +14,13 @@ use Symfony\Component\Translation\TranslatorInterface;
 class UserType extends AbstractType
 {
     protected $class;
-    protected $translator;
 
     /**
      * @param string              $class
-     * @param TranslatorInterface $translator
      */
-    public function __construct($class, TranslatorInterface $translator)
+    public function __construct($class)
     {
         $this->class = $class;
-        $this->translator = $translator;
     }
 
     /**
