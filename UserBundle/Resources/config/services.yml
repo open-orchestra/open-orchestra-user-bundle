@@ -3,6 +3,10 @@ parameters:
     open_orchestra_user.document.user.class: OpenOrchestra\UserBundle\Document\User
     open_orchestra_user.repository.group.class: OpenOrchestra\UserBundle\Repository\GroupRepository
     open_orchestra_user.document.group.class: OpenOrchestra\UserBundle\Document\Group
+    open_orchestra_user.repository.api_client.class: OpenOrchestra\UserBundle\Repository\ApiClientRepository
+    open_orchestra_user.document.api_client.class: OpenOrchestra\UserBundle\Document\ApiClient
+    open_orchestra_user.repository.access_token.class: OpenOrchestra\UserBundle\Repository\AccessTokenRepository
+    open_orchestra_user.document.access_token.class: OpenOrchestra\UserBundle\Document\AccessToken
 
 services:
     open_orchestra_user.repository.user:
@@ -17,3 +21,15 @@ services:
         factory_method: getRepository
         arguments:
             - %open_orchestra_user.document.group.class%
+    open_orchestra_user.repository.api_client:
+        class: %open_orchestra_user.repository.api_client.class%
+        factory_service: doctrine.odm.mongodb.document_manager
+        factory_method: getRepository
+        arguments:
+            - %open_orchestra_user.document.api_client.class%
+    open_orchestra_user.repository.access_token:
+        class: %open_orchestra_user.repository.access_token.class%
+        factory_service: doctrine.odm.mongodb.document_manager
+        factory_method: getRepository
+        arguments:
+            - %open_orchestra_user.document.access_token.class%
