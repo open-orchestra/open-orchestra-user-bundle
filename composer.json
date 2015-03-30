@@ -1,7 +1,7 @@
 {
     "name": "itkg/open-orchestra-user-bundle",
     "description": "An override of FosUserBundle to provide authentication on OpenOrchestra",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Nicolas Thal",
