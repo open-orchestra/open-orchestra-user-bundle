@@ -26,7 +26,7 @@ class FormControllersTest extends WebTestCase
                 'PHP_AUTH_USER' => 'nicolas',
                 'PHP_AUTH_PW'   => 'nicolas',
             ),
-            array('HTTP_HOST' => 'echonext.phporchestra.dev')
+            array('HTTP_HOST' => 'www.openorchestra.dev')
         );
         $this->client->followRedirects();
     }
