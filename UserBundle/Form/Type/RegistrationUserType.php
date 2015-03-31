@@ -5,7 +5,6 @@ namespace OpenOrchestra\UserBundle\Form\Type;
 use FOS\UserBundle\Form\Type\RegistrationFormType;
 use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class UserType

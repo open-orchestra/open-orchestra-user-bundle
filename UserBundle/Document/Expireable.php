@@ -36,7 +36,7 @@ trait Expireable
      */
     public function isExpired()
     {
-        if (null == $this->expiredAt) {
+        if (is_null($this->expiredAt)) {
             return false;
         }
 
