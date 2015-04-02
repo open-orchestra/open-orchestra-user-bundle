@@ -1,5 +1,5 @@
 {
-    "name": "itkg/open-orchestra-user-bundle",
+    "name": "open-orchestra/open-orchestra-user-bundle",
     "description": "An override of FosUserBundle to provide authentication on OpenOrchestra",
     "license": "Apache-2.0",
     "authors": [
@@ -8,33 +8,19 @@
             "email": "nico.th4l@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/itkg/open-orchestra-model-interface"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/itkg/open-orchestra-display-bundle"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/itkg/open-orchestra-base-bundle"
-        }
-    ],
     "minimum-stability": "dev",
     "require": {
         "friendsofsymfony/user-bundle": "~2.0"
     },
     "require-dev": {
-        "itkg/open-orchestra-base-bundle": "dev-master",
-        "itkg/open-orchestra-display-bundle": "dev-master",
+        "open-orchestra/open-orchestra-base-bundle": "dev-master",
+        "open-orchestra/open-orchestra-display-bundle": "dev-master",
         "phpunit/phpunit" : "4.0.14",
         "scrutinizer/ocular": "1.1.1",
         "phake/phake": "2.0.0-beta2"
     },
     "suggest": {
-        "itkg/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
+        "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
     },
     "config" : {
         "bin-dir" : "bin"
