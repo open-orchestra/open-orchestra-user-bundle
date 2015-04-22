@@ -2,6 +2,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
+    {% if error %}
+        <div class="alert alert-error">
+            {{ error.messageKey|trans(error.messageData) }}
+        </div>
+    {% endif %}
+
     <div class="fos_user">
         <form action="{{ path("fos_user_security_check") }}" method="post" class="smart-form client-form redirectable-form">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
