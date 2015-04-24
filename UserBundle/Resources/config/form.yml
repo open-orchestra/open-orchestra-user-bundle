@@ -1,27 +1,6 @@
 parameters:
-    open_orchestra_user.type.user.class: OpenOrchestra\UserBundle\Form\Type\UserType
-    open_orchestra_user.type.registration_user.class: OpenOrchestra\UserBundle\Form\Type\RegistrationUserType
-    open_orchestra_user.type.orchestra_role_choice.class: OpenOrchestra\UserBundle\Form\Type\OrchestraRoleType
     open_orchestra_user.type.api_client.class: OpenOrchestra\UserBundle\Form\Type\ApiClientType
 services:
-    open_orchestra_user.type.user:
-        class: %open_orchestra_user.type.user.class%
-        arguments:
-            - %open_orchestra_user.document.user.class%
-        tags:
-            - { name: form.type, alias: user}
-    open_orchestra_user.type.registration_user:
-        class: %open_orchestra_user.type.registration_user.class%
-        arguments:
-            - %open_orchestra_user.document.user.class%
-        tags:
-            - { name: form.type, alias: registration_user}
-    open_orchestra_user.type.orchestra_role_choice:
-        class: %open_orchestra_user.type.orchestra_role_choice.class%
-        arguments:
-            - @open_orchestra_model.repository.role
-        tags:
-            - { name: form.type, alias: orchestra_role_choice }
     open_orchestra_user.type.api_client:
         class: %open_orchestra_user.type.api_client.class%
         arguments:

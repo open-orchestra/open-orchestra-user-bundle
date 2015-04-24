@@ -4,7 +4,6 @@ namespace OpenOrchestra\UserBundle\Tests\Form\Type;
 
 use OpenOrchestra\UserBundle\Form\Type\ApiClientType;
 use Phake;
-use OpenOrchestra\UserBundle\Form\Type\UserType;
 
 /**
  * Class UserTypeTest
@@ -15,7 +14,7 @@ class ApiClientTypeTest extends \PHPUnit_Framework_TestCase
     protected $resolver;
 
     /**
-     * @var UserType
+     * @var ApiClientType
      */
     protected $form;
 
