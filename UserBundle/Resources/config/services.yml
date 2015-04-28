@@ -1,6 +1,6 @@
 parameters:
     open_orchestra_user.repository.user.class: OpenOrchestra\UserBundle\Repository\UserRepository
-    open_orchestra_user.document.user.class: OpenOrchestra\UserBundle\Document\User
+    open_orchestra_user.document.user.class: %fos_user.model.user.class%
     open_orchestra_user.repository.group.class: OpenOrchestra\UserBundle\Repository\GroupRepository
     open_orchestra_user.document.group.class: OpenOrchestra\UserBundle\Document\Group
     open_orchestra_user.repository.api_client.class: OpenOrchestra\UserBundle\Repository\ApiClientRepository
