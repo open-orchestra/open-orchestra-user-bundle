@@ -36,14 +36,14 @@ class AccessToken implements TokenInterface
     /**
      * @var UserInterface $user
      *
-     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\UserBundle\Document\User")
+     * @ODM\ReferenceOne(targetDocument="Symfony\Component\Security\Core\User\UserInterface")
      */
     protected $user;
 
     /**
      * @var ApiClientInterface $client
      *
-     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\UserBundle\Document\ApiClient")
+     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\UserBundle\Model\ApiClientInterface")
      */
     protected $client;
 
