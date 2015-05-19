@@ -4,6 +4,8 @@ namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use OpenOrchestra\UserBundle\Model\AuthorizationInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Document User
@@ -47,11 +49,17 @@ class User extends BaseUser
     protected $groups;
 
     /**
+     * @ODM\EmbedMany(targetDocument="OpenOrchestra\UserBundle\Model\AuthorizationInterface")
+     */
+    protected $authorizations;
+
+    /**
      * Class constructor
      */
     public function __construct()
     {
         parent::__construct();
+        $this->authorizations = new ArrayCollection();
         $this->setEnabled(true);
     }
 
@@ -80,6 +88,14 @@ class User extends BaseUser
     }
 
     /**
+     * @return ArrayCollection
+     */
+    public function getAuthorizations()
+    {
+        return $this->authorizations;
+    }
+
+    /**
      * @param string $lastName
      */
     public function setLastName($lastName)
@@ -101,5 +117,13 @@ class User extends BaseUser
     public function setLanguage($language)
     {
         $this->language = $language;
+    }
+
+    /**
+     * @param AuthorizationInterface $authorization
+     */
+    public function addAuthorization(AuthorizationInterface $authorization)
+    {
+        $this->authorizations->add($authorization);
     }
 }
