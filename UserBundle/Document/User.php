@@ -122,14 +122,6 @@ class User extends BaseUser
     /**
      * @param AuthorizationInterface $authorization
      */
-    public function resetAuthorizations()
-    {
-        $this->authorizations = new ArrayCollection();
-    }
-
-    /**
-     * @param AuthorizationInterface $authorization
-     */
     public function addAuthorization(AuthorizationInterface $authorization)
     {
         $this->authorizations->add($authorization);
@@ -141,5 +133,13 @@ class User extends BaseUser
     public function setAuthorizations(ArrayCollection $authorizations)
     {
         $this->authorizations = $authorizations;
+    }
+
+    /**
+     * @param AuthorizationInterface $authorization
+     */
+    public function removeAuthorization(AuthorizationInterface $authorization)
+    {
+        $this->authorizations->removeElement($authorization);
     }
 }

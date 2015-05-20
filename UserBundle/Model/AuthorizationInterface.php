@@ -10,6 +10,7 @@ use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
  */
 interface AuthorizationInterface
 {
+    const NODE = 'node';
     /**
      * @param string $authorizationId
      */
@@ -21,9 +22,9 @@ interface AuthorizationInterface
     public function getAuthorizationId();
 
     /**
-     * @param WorkflowFunctionInterface $workflowFunction
+     * @param ArrayCollection $workflowFunctions
      */
-    public function addWorkflowFunction(WorkflowFunctionInterface $workflowFunction);
+    public function setWorkflowFunctions(ArrayCollection $workflowFunctions);
 
     /**
      * @return ArrayCollection

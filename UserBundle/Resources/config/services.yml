@@ -8,6 +8,7 @@ parameters:
     open_orchestra_user.repository.access_token.class: OpenOrchestra\UserBundle\Repository\AccessTokenRepository
     open_orchestra_user.document.access_token.class: OpenOrchestra\UserBundle\Document\AccessToken
     open_orchestra_user.domain_manager.api_client.class: OpenOrchestra\UserBundle\DomainManager\ApiClientManager
+    open_orchestra_user.document.authorization.class: OpenOrchestra\UserBundle\Document\Authorization
 
 services:
     open_orchestra_user.repository.user:

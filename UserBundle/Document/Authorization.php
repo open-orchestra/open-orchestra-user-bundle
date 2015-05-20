@@ -23,6 +23,13 @@ class Authorization implements AuthorizationInterface
     protected $authorizationId;
 
     /**
+     * @var string $name
+     *
+     * @ODM\Field(type="string")
+     */
+    protected $name;
+
+    /**
      * @var ArrayCollection $workflowFunctions
      *
      * @ODM\ReferenceMany(targetDocument="OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface")
@@ -57,11 +64,23 @@ class Authorization implements AuthorizationInterface
     }
 
     /**
-     * @param WorkflowFunctionInterface $workflowFunction
+     * Set name
+     *
+     * @param string $name
      */
-    public function addWorkflowFunction(WorkflowFunctionInterface $workflowFunction)
+    public function setName($name)
     {
-        $this->workflowFunctions->add($workflowFunction);
+        $this->name = $name;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**

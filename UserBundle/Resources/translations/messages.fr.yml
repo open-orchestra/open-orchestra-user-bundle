@@ -21,6 +21,7 @@ open_orchestra_user:
             groups: Groupes
             language: Langage par défaut
             success: L'utilisateur a été mis à jour
+            authorizations: autorisations
     new:
         success: L'utilisateur a bien été créé.
     update:
