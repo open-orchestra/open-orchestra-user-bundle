@@ -1,0 +1,4 @@
+resolve_target_documents:
+    Symfony\Component\Security\Core\User\UserInterface: OpenOrchestra\UserBundle\Document\User
+    FOS\UserBundle\Model\GroupInterface: OpenOrchestra\UserBundle\Document\Group
+    OpenOrchestra\UserBundle\Model\ApiClientInterface: OpenOrchestra\UserBundle\Document\ApiClient
