@@ -65,6 +65,14 @@ class Authorization implements AuthorizationInterface
     }
 
     /**
+     * @param WorkflowFunctionInterface $workflowFunction
+     */
+    public function setWorkflowFunctions(ArrayCollection $workflowFunctions)
+    {
+        $this->workflowFunctions = $workflowFunctions;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getWorkflowFunctions()
