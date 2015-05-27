@@ -2,11 +2,6 @@ open_orchestra_user:
     login:
         title: Login
     form:
-        api_client:
-            name: Name
-            trusted: Trusted
-            key: Key
-            secret: Secret
         registration_user:
             first_name: First name
             last_name: Last name
