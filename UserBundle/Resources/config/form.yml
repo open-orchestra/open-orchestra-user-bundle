@@ -1,5 +1,7 @@
 parameters:
     open_orchestra_user.type.api_client.class: OpenOrchestra\UserBundle\Form\Type\ApiClientType
+    open_orchestra_user.type.change_password.class: OpenOrchestra\UserBundle\Form\Type\ChangePasswordUserType
+
 services:
     open_orchestra_user.type.api_client:
         class: %open_orchestra_user.type.api_client.class%
@@ -7,3 +9,9 @@ services:
             - %open_orchestra_user.document.api_client.class%
         tags:
             - { name: form.type, alias: api_client }
+    open_orchestra_user.type.change_user_password:
+        class: %open_orchestra_user.type.change_password.class%
+        arguments:
+            - %open_orchestra_user.document.user.class%
+        tags:
+            - { name: form.type, alias: user_change_password}
