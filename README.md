@@ -1,7 +1,6 @@
 open-orchestra-user-bundle
 ==========================
 
-
 | Service       | Badge         |
 | ------------- |:-------------:|
 | Travis | [![Build Status](https://travis-ci.org/open-orchestra/open-orchestra-user-bundle.svg)](https://travis-ci.org/open-orchestra/open-orchestra-user-bundle) |
