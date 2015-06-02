@@ -4,10 +4,10 @@ namespace OpenOrchestra\UserBundle\DisplayBlock;
 
 use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
-use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 /**
  * Class LoginStrategy
@@ -20,10 +20,10 @@ class LoginStrategy extends AbstractStrategy
     protected $securityContext;
 
     /**
-     * @param CsrfTokenManagerAdapter  $tokenManager
-     * @param SecurityContextInterface $securityContext
+     * @param CsrfTokenManagerInterface $tokenManager
+     * @param TokenStorageInterface     $securityContext
      */
-    public function __construct(CsrfTokenManagerAdapter $tokenManager, SecurityContextInterface $securityContext)
+    public function __construct(CsrfTokenManagerInterface $tokenManager, TokenStorageInterface $securityContext)
     {
         $this->tokenManager = $tokenManager;
         $this->securityContext = $securityContext;
@@ -59,7 +59,7 @@ class LoginStrategy extends AbstractStrategy
         return $this->render(
             'OpenOrchestraUserBundle:Security:loginForm.html.twig',
             array(
-                'csrf_token' => $this->tokenManager->generateCsrfToken('authenticate'),
+                'csrf_token' => $this->tokenManager->getToken('authenticate')->getValue(),
                 'last_username' => ''
             )
         );
