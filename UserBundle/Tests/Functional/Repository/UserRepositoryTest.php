@@ -77,7 +77,7 @@ class UserRepositoryTest extends KernelTestCase
      */
     public function testCountFilterSearch($descriptionEntity, $columns, $search, $count)
     {
-        $users = $this->repository->countFilterSearch($descriptionEntity, $columns, $search);
+        $users = $this->repository->countWithSearchFilter($descriptionEntity, $columns, $search);
         $this->assertEquals($count, $users);
     }
 
