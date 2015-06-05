@@ -2,13 +2,12 @@
 
 namespace OpenOrchestra\UserBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\UserBundle\Document\User;
 
 /**
  * Class UserRepository
  */
-class UserRepository extends DocumentRepository
+class UserRepository extends AbstractRepository
 {
     /**
      * @param string $username

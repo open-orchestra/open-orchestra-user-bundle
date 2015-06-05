@@ -6,7 +6,10 @@ use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @ODM\Document(collection="group_document")
+ * @ODM\Document(
+ *  collection="group_document",
+ *  repositoryClass="OpenOrchestra\UserBundle\Repository\GroupRepository"
+ * )
  */
 class Group extends BaseGroup
 {
