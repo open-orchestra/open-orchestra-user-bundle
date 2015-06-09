@@ -20,7 +20,7 @@ class EntityResolverCompilerPass implements  CompilerPassInterface
         foreach ($container->getResources() as $resource) {
             $resourcePath = $resource->getResource();
             if (is_string($resourcePath)) {
-                if (strpos($resourcePath, 'user-bundle')
+                if (strpos($resourcePath, 'open-orchestra-user-bundle')
                     && strpos($resourcePath, 'config')
                     && strpos($resourcePath, 'yml') === false
                 ) {
