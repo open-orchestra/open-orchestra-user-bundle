@@ -15,9 +15,9 @@
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
         "open-orchestra/open-orchestra-display-bundle": "dev-master",
-        "phpunit/phpunit" : "4.6.1",
+        "phpunit/phpunit" : "4.7.2",
         "scrutinizer/ocular": "1.1.1",
-        "phake/phake": "2.0.2"
+        "phake/phake": "2.1.0"
     },
     "suggest": {
         "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
