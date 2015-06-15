@@ -17,7 +17,10 @@ class AddSubmitButtonSubscriber implements EventSubscriberInterface
     public function postSetData(FormEvent $event)
     {
         $form = $event->getForm();
-        $parameter = array('label' => 'open_orchestra_base.form.submit', 'attr' => array('class' => 'submit_form'));
+        $parameter = array(
+            'label' => 'open_orchestra_base.form.submit',
+            'attr' => array('class' => 'submit_form')
+        );
 
         $form->add('submit', 'submit', $parameter);
     }
