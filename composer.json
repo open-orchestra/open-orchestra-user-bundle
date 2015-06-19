@@ -16,7 +16,8 @@
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
         "open-orchestra/open-orchestra-display-bundle": "dev-master",
         "phpunit/phpunit" : "4.7.2",
-        "scrutinizer/ocular": "1.1.1",
+        "psr/log": "1.0.0",
+        "codeclimate/php-test-reporter": "dev-master",
         "phake/phake": "2.1.0"
     },
     "suggest": {
