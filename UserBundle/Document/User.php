@@ -4,6 +4,8 @@ namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique;
 
 /**
  * Document User
@@ -11,6 +13,11 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  * @ODM\Document(
  *  collection="user",
  *  repositoryClass="OpenOrchestra\UserBundle\Repository\UserRepository"
+ * )
+ *
+ * @Unique(
+ *   fields={"email"},
+ *   message="open_orchestra_user.form.registration_user.unique_user_name"
  * )
  */
 class User extends BaseUser
@@ -23,6 +30,7 @@ class User extends BaseUser
     /**
      * @var string $lastName
      *
+     * @Assert\NotBlank()
      * @ODM\Field(type="string")
      */
     protected $lastName;
@@ -30,6 +38,7 @@ class User extends BaseUser
     /**
      * @var string $firstName
      *
+     * @Assert\NotBlank()
      * @ODM\Field(type="string")
      */
     protected $firstName;
