@@ -2,11 +2,14 @@
 
 namespace OpenOrchestra\UserBundle\Form\Type;
 
+use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ChangePasswordFormType;
-use OpenOrchestra\BackofficeBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ChangePasswordUserType
+ */
 class ChangePasswordUserType extends ChangePasswordFormType
 {
     private $class;
@@ -19,6 +22,10 @@ class ChangePasswordUserType extends ChangePasswordFormType
         $this->class = $class;
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
@@ -26,6 +33,9 @@ class ChangePasswordUserType extends ChangePasswordFormType
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -34,6 +44,9 @@ class ChangePasswordUserType extends ChangePasswordFormType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'user_change_password';
