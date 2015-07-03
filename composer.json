@@ -10,7 +10,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "friendsofsymfony/user-bundle": "~2.0"
+        "friendsofsymfony/user-bundle": "~2.0",
+        "open-orchestra/open-orchestra-libs": "*",
+        "solution/mongo-odm-aggregation-bundle": "*"
     },
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
