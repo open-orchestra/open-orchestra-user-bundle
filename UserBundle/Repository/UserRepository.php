@@ -2,17 +2,20 @@
 
 namespace OpenOrchestra\UserBundle\Repository;
 
-use OpenOrchestra\UserBundle\Document\User;
+use Doctrine\ODM\MongoDB\DocumentRepository;
+use OpenOrchestra\Pagination\MongoTrait\PaginateTrait;
 
 /**
  * Class UserRepository
  */
-class UserRepository extends AbstractRepository
+class UserRepository extends DocumentRepository
 {
+    use PaginateTrait;
+
     /**
      * @param string $username
      *
-     * @return User
+     * @return \OpenOrchestra\UserBundle\Document\User
      */
     public function findOneByUsername($username)
     {

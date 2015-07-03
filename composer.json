@@ -10,7 +10,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "friendsofsymfony/user-bundle": "~2.0"
+        "friendsofsymfony/user-bundle": "~2.0",
+        "open-orchestra/open-orchestra-libs": "*",
+        "solution/mongo-odm-aggregation-bundle": "*"
     },
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
@@ -18,7 +20,7 @@
         "phpunit/phpunit" : "4.7.2",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
-        "phake/phake": "2.1.0"
+        "phake/phake": "2.1.0",
     },
     "suggest": {
         "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
