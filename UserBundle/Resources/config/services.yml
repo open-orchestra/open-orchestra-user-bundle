@@ -10,6 +10,8 @@ services:
         factory:
             - @doctrine.odm.mongodb.document_manager
             - getRepository
+        calls:
+            - [setAggregationQueryBuilder, [@doctrine_mongodb.odm.default_aggregation_query]]
         arguments:
             - %open_orchestra_user.document.user.class%
     open_orchestra_user.repository.group:
@@ -17,5 +19,7 @@ services:
         factory:
             - @doctrine.odm.mongodb.document_manager
             - getRepository
+        calls:
+            - [setAggregationQueryBuilder, [@doctrine_mongodb.odm.default_aggregation_query]]
         arguments:
             - %open_orchestra_user.document.group.class%
