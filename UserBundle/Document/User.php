@@ -4,6 +4,7 @@ namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use OpenOrchestra\UserBundle\Model\UserInterface;
 
 /**
  * Document User
@@ -13,7 +14,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  *  repositoryClass="OpenOrchestra\UserBundle\Repository\UserRepository"
  * )
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface
 {
     /**
      * @ODM\Id()
