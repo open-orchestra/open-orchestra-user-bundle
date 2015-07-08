@@ -2,17 +2,15 @@
 
 namespace OpenOrchestra\UserBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
-use OpenOrchestra\Pagination\MongoTrait\FilterTrait;
+use OpenOrchestra\Repository\AbstractAggregateRepository;
 use OpenOrchestra\Pagination\MongoTrait\PaginationTrait;
 
 /**
  * Class UserRepository
  */
-class UserRepository extends DocumentRepository
+class UserRepository extends AbstractAggregateRepository
 {
     use PaginationTrait;
-    use FilterTrait;
 
     /**
      * @param string $username
