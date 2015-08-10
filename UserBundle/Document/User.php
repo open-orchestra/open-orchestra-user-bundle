@@ -5,7 +5,7 @@ namespace OpenOrchestra\UserBundle\Document;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\UserBundle\Model\UserInterface;
-use OpenOrchestra\ModelInterface\Mapping\Annotations as ORCHESTRA;
+use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 
 /**
  * Document User
