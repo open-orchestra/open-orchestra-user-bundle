@@ -11,19 +11,20 @@
     "minimum-stability": "dev",
     "require": {
         "friendsofsymfony/user-bundle": "~2.0",
-        "open-orchestra/open-orchestra-libs": "*",
-        "solution/mongo-odm-aggregation-bundle": "*"
+        "open-orchestra/open-orchestra-libs": "*"
     },
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
         "open-orchestra/open-orchestra-display-bundle": "dev-master",
+        "solution/mongo-odm-aggregation-bundle": "*",
         "phpunit/phpunit" : "4.7.2",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
         "phake/phake": "2.1.0"
     },
     "suggest": {
-        "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project"
+        "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project",
+        "solution/mongo-odm-aggregation-bundle": "In order to use the mongo mapping already created"
     },
     "config" : {
         "bin-dir" : "bin"
