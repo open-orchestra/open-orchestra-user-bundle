@@ -29,7 +29,7 @@ class ChangePasswordUserType extends ChangePasswordFormType
     {
         parent::buildForm($builder, $options);
 
-        if(array_key_exists('disabled', $options)) {
+        if (array_key_exists('disabled', $options)) {
             $builder->setAttribute('disabled', $options['disabled']);
         }
     }
