@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\UserBundle\Form\Type;
 
-use OpenOrchestra\UserBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ChangePasswordFormType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,7 +29,9 @@ class ChangePasswordUserType extends ChangePasswordFormType
     {
         parent::buildForm($builder, $options);
 
-        $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
+        if (array_key_exists('disabled', $options)) {
+            $builder->setAttribute('disabled', $options['disabled']);
+        }
     }
 
     /**
