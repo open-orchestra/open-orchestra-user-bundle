@@ -30,9 +30,8 @@
         "bin-dir" : "bin"
     },
     "autoload": {
-        "psr-0": {
-            "OpenOrchestra\\UserBundle": ""
+        "psr-4": {
+            "OpenOrchestra\\UserBundle\\": "UserBundle/"
         }
-    },
-    "target-dir": "OpenOrchestra"
+    }
 }
