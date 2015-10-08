@@ -1,6 +1,7 @@
 open_orchestra_user:
     login:
         title: Login
+        welcome: Welcome to Open Orchestra
     form:
         registration_user:
             first_name: First name
