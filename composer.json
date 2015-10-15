@@ -16,6 +16,7 @@
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "dev-master",
         "open-orchestra/open-orchestra-display-bundle": "dev-master",
+        "open-orchestra/open-orchestra-mongo-libs": "dev-master",
         "solution/mongo-odm-aggregation-bundle": "*",
         "phpunit/phpunit" : "4.7.2",
         "psr/log": "1.0.0",
