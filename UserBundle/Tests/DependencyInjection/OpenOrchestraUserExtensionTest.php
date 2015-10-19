@@ -8,7 +8,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
- * Class OpenOrchestraBaseApiExtensionTest
+ * Class OpenOrchestraUserExtensionTest
  */
 class OpenOrchestraUserExtensionTest extends \PHPUnit_Framework_TestCase
 {
