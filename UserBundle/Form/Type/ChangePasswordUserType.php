@@ -50,6 +50,6 @@ class ChangePasswordUserType extends ChangePasswordFormType
      */
     public function getName()
     {
-        return 'user_change_password';
+        return 'oo_user_change_password';
     }
 }
