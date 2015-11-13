@@ -52,6 +52,7 @@ class User extends BaseUser implements UserInterface
 
     /**
      * @ODM\ReferenceMany(targetDocument="FOS\UserBundle\Model\GroupInterface")
+     * @ORCHESTRA\Search(key="groups", field="groups.label", type="reference")
      */
     protected $groups;
 
