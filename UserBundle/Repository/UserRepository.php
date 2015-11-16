@@ -9,7 +9,7 @@ use FOS\UserBundle\Model\GroupInterface;
 /**
  * Class UserRepository
  */
-class UserRepository extends AbstractAggregateRepository
+class UserRepository extends AbstractAggregateRepository implements UserRepositoryInterface
 {
     use PaginationTrait;
 
