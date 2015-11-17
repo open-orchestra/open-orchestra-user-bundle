@@ -11,7 +11,7 @@
     "minimum-stability": "dev",
     "require": {
         "friendsofsymfony/user-bundle": "~2.0",
-        "open-orchestra/open-orchestra-libs": "*"
+        "open-orchestra/open-orchestra-libs": "~1.0.0"
     },
     "require-dev": {
         "open-orchestra/open-orchestra-base-bundle": "~1.0.0",
