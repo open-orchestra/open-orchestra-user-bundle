@@ -3,11 +3,12 @@
 namespace OpenOrchestra\UserBundle\Repository;
 
 use FOS\UserBundle\Model\GroupInterface;
+use OpenOrchestra\Pagination\Configuration\PaginationRepositoryInterface;
 
 /**
  * Interface UserRepositoryInterface
  */
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends PaginationRepositoryInterface
 {
     /**
      * @param string $username
