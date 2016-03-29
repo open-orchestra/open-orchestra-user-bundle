@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Class RoleUsageCompilerPass
  */
-class RoleUsageCompilerPass implements  CompilerPassInterface
+class RoleUsageCompilerPass implements CompilerPassInterface
 {
     /**
      * @param ContainerBuilder $container
