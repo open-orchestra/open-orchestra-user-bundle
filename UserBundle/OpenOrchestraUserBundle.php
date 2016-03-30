@@ -4,6 +4,7 @@ namespace OpenOrchestra\UserBundle;
 
 use OpenOrchestra\UserBundle\DependencyInjection\Compiler\EntityResolverCompilerPass;
 use OpenOrchestra\UserBundle\DependencyInjection\Compiler\TwigGlobalsCompilerPass;
+use OpenOrchestra\UserBundle\DependencyInjection\Compiler\RoleUsageCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -22,6 +23,7 @@ class OpenOrchestraUserBundle extends Bundle
 
         $container->addCompilerPass(new TwigGlobalsCompilerPass());
         $container->addCompilerPass(new EntityResolverCompilerPass());
+        $container->addCompilerPass(new RoleUsageCompilerPass());
     }
 
     /**
