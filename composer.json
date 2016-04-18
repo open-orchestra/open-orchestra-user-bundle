@@ -1,38 +1,47 @@
 {
-    "name": "open-orchestra/open-orchestra-user-bundle",
-    "description": "An override of FosUserBundle to provide authentication on OpenOrchestra",
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "OpenOrchestra community",
-            "homepage": "https://github.com/open-orchestra/open-orchestra-user-bundle/graphs/contributors"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "friendsofsymfony/user-bundle": "~2.0",
-        "open-orchestra/open-orchestra-libs": "*"
-    },
-    "require-dev": {
-        "open-orchestra/open-orchestra-base-bundle": "*",
-        "open-orchestra/open-orchestra-display-bundle": "*",
-        "open-orchestra/open-orchestra-mongo-libs": "*",
-        "solution/mongo-odm-aggregation-bundle": "*",
-        "phpunit/phpunit" : "4.7.2",
-        "psr/log": "1.0.0",
-        "codeclimate/php-test-reporter": "dev-master",
-        "phake/phake": "2.1.0"
-    },
-    "suggest": {
-        "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project",
-        "solution/mongo-odm-aggregation-bundle": "In order to use the mongo mapping already created"
-    },
-    "config" : {
-        "bin-dir" : "bin"
-    },
-    "autoload": {
-        "psr-4": {
-            "OpenOrchestra\\UserBundle\\": "UserBundle/"
-        }
+  "name": "open-orchestra/open-orchestra-user-bundle",
+  "description": "An override of FosUserBundle to provide authentication on OpenOrchestra",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "OpenOrchestra community",
+      "homepage": "https://github.com/open-orchestra/open-orchestra-user-bundle/graphs/contributors"
     }
+  ],
+  "require": {
+    "friendsofsymfony/user-bundle": "2.0.*@dev",
+    "open-orchestra/open-orchestra-libs": "1.1.*@dev"
+  },
+  "require-dev": {
+    "open-orchestra/open-orchestra-base-bundle": "1.1.*@dev",
+    "open-orchestra/open-orchestra-display-bundle": "1.1.*@dev",
+    "open-orchestra/open-orchestra-mongo-libs": "1.1.*@dev",
+    "solution/mongo-odm-aggregation-bundle": "dev-master",
+    "phpunit/phpunit" : "4.7.2",
+    "psr/log": "1.0.0",
+    "codeclimate/php-test-reporter": "dev-master",
+    "phake/phake": "2.1.0",
+
+    "solution/pipeline-builder": "dev-master",
+    "open-orchestra/open-orchestra-bbcode-bundle": "1.1.*@dev",
+    "open-orchestra/open-orchestra-model-interface": "1.1.*@dev",
+    "innocead/captcha-bundle": "dev-master"
+  },
+  "suggest": {
+    "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project",
+    "solution/mongo-odm-aggregation-bundle": "In order to use the mongo mapping already created"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.1.x-dev"
+    }
+  },
+  "config" : {
+    "bin-dir" : "bin"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenOrchestra\\UserBundle\\": "UserBundle/"
+    }
+  }
 }
