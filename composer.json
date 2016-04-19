@@ -23,6 +23,7 @@
     "phake/phake": "2.1.0",
 
     "solution/pipeline-builder": "@dev",
+    "innocead/captcha-bundle": "@dev",
     "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
     "open-orchestra/open-orchestra-model-interface": "@dev"
   },
