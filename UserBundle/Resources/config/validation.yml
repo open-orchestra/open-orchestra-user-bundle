@@ -3,6 +3,9 @@ OpenOrchestra\UserBundle\Document\User:
         - Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique:
             fields: username
             message: open_orchestra_user.form.registration_user.unique_user_name
+        - Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique:
+            fields: emailCanonical
+            message: fos_user.email.already_used
     properties:
         lastName:
             - NotBlank: ~
