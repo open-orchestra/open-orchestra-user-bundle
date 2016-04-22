@@ -1,6 +1,6 @@
 {
   "name": "open-orchestra/open-orchestra-user-bundle",
-  "description": "An override of FosUserBundle to provide authentication on OpenOrchestra",
+  "description": "An override of FosUserBundle to provide authentication on Open Orchestra",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -16,13 +16,12 @@
     "open-orchestra/open-orchestra-base-bundle": "1.1.*@dev",
     "open-orchestra/open-orchestra-display-bundle": "1.1.*@dev",
     "open-orchestra/open-orchestra-mongo-libs": "1.1.*@dev",
-    "solution/mongo-odm-aggregation-bundle": "dev-master",
+    "solution/mongo-odm-aggregation-bundle": "~0.1",
     "phpunit/phpunit" : "4.7.2",
     "psr/log": "1.0.0",
     "codeclimate/php-test-reporter": "dev-master",
     "phake/phake": "2.1.0",
 
-    "solution/pipeline-builder": "@dev",
     "innocead/captcha-bundle": "@dev",
     "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
     "open-orchestra/open-orchestra-model-interface": "@dev"
