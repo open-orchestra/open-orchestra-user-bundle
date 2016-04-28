@@ -10,22 +10,30 @@
   ],
   "require": {
     "friendsofsymfony/user-bundle": "2.0.*@dev",
-    "open-orchestra/open-orchestra-libs": "~1.1.0"
+    "open-orchestra/open-orchestra-libs": "1.1.*@dev"
   },
   "require-dev": {
-    "open-orchestra/open-orchestra-base-bundle": "~1.1.0",
-    "open-orchestra/open-orchestra-display-bundle": "~1.1.0",
-    "open-orchestra/open-orchestra-mongo-libs": "~1.1.0",
+    "open-orchestra/open-orchestra-base-bundle": "1.1.*@dev",
+    "open-orchestra/open-orchestra-display-bundle": "1.1.*@dev",
+    "open-orchestra/open-orchestra-mongo-libs": "1.1.*@dev",
     "solution/mongo-odm-aggregation-bundle": "~0.1",
     "phpunit/phpunit" : "4.7.2",
     "psr/log": "1.0.0",
     "codeclimate/php-test-reporter": "dev-master",
     "phake/phake": "2.1.0",
-    "innocead/captcha-bundle": "@dev"
+    "innocead/captcha-bundle": "@dev",
+
+    "open-orchestra/open-orchestra-bbcode-bundle": "@dev",
+    "open-orchestra/open-orchestra-model-interface": "@dev"
   },
   "suggest": {
     "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project",
     "solution/mongo-odm-aggregation-bundle": "In order to use the mongo mapping already created"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.1.x-dev"
+    }
   },
   "config" : {
     "bin-dir" : "bin"
