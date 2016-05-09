@@ -23,7 +23,6 @@ class OpenOrchestraUserBundle extends Bundle
 
         $container->addCompilerPass(new TwigGlobalsCompilerPass());
         $container->addCompilerPass(new EntityResolverCompilerPass());
-        $container->addCompilerPass(new RoleUsageCompilerPass());
     }
 
     /**
