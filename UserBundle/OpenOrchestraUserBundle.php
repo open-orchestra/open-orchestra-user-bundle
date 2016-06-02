@@ -4,7 +4,6 @@ namespace OpenOrchestra\UserBundle;
 
 use OpenOrchestra\UserBundle\DependencyInjection\Compiler\EntityResolverCompilerPass;
 use OpenOrchestra\UserBundle\DependencyInjection\Compiler\TwigGlobalsCompilerPass;
-use OpenOrchestra\UserBundle\DependencyInjection\Compiler\RoleUsageCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
