@@ -27,11 +27,6 @@
     "open-orchestra/open-orchestra-display-bundle": "In order to use all the functionality offered by the OpenOrchestra project",
     "solution/mongo-odm-aggregation-bundle": "In order to use the mongo mapping already created"
   },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.1.x-dev"
-    }
-  },
   "config" : {
     "bin-dir" : "bin"
   },
