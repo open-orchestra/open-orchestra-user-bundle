@@ -2,11 +2,10 @@
 
 | Service       | Badge         |
 | ------------- |:-------------:|
-| Travis | [![Build Status](https://travis-ci.org/open-orchestra/open-orchestra-user-bundle.svg)](https://travis-ci.org/open-orchestra/open-orchestra-user-bundle) |
-| CodeClimate (quality) | [![Code Climate](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle/badges/gpa.svg)](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle) |
-| CodeClimate (coverage) | [![Test Coverage](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle/badges/coverage.svg)](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle/coverage) |
+| Travis | [![Build Status](https://travis-ci.org/open-orchestra/open-orchestra-user-bundle.svg?branch=master)](https://travis-ci.org/open-orchestra/open-orchestra-user-bundle) |
 | Sensio Insight | [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9fb35126-d98c-41d6-9a90-ad9fa269aa60/big.png)](https://insight.sensiolabs.com/projects/9fb35126-d98c-41d6-9a90-ad9fa269aa60) |
-| VersionEye | [![Dependency Status](https://www.versioneye.com/user/projects/551e87ad971f78433900010e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/551e87ad971f78433900010e) |
+| Code Climate (Quality) | [![Code Climate](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle/badges/gpa.svg)](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle) |
+| Code Climate (Code coverage) | [![Test Coverage](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle/badges/coverage.svg)](https://codeclimate.com/github/open-orchestra/open-orchestra-user-bundle/coverage) |
 | Latest Stable Version | [![Latest Stable Version](https://poser.pugx.org/open-orchestra/open-orchestra-user-bundle/v/stable)](https://packagist.org/packages/open-orchestra/open-orchestra-user-bundle) |
 | Total Downloads | [![Total Downloads](https://poser.pugx.org/open-orchestra/open-orchestra-user-bundle/downloads)](https://packagist.org/packages/open-orchestra/open-orchestra-user-bundle) |
 
