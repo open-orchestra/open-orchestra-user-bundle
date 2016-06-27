@@ -1,27 +1,27 @@
 parameters:
     open_orchestra_user.repository.user.class: OpenOrchestra\UserBundle\Repository\UserRepository
-    open_orchestra_user.document.user.class: %fos_user.model.user.class%
+    open_orchestra_user.document.user.class: '%fos_user.model.user.class%'
     open_orchestra_user.repository.group.class: OpenOrchestra\UserBundle\Repository\GroupRepository
     open_orchestra_user.document.group.class: OpenOrchestra\UserBundle\Document\Group
 
 services:
     open_orchestra_user.repository.user:
-        class: %open_orchestra_user.repository.user.class%
+        class: '%open_orchestra_user.repository.user.class%'
         factory:
-            - @doctrine.odm.mongodb.document_manager
+            - '@doctrine.odm.mongodb.document_manager'
             - getRepository
         calls:
-            - [setAggregationQueryBuilder, [@doctrine_mongodb.odm.default_aggregation_query]]
-            - [setFilterTypeManager, [@open_orchestra_pagination.filter_type.manager]]
+            - [setAggregationQueryBuilder, ['@doctrine_mongodb.odm.default_aggregation_query']]
+            - [setFilterTypeManager, ['@open_orchestra_pagination.filter_type.manager']]
         arguments:
-            - %open_orchestra_user.document.user.class%
+            - '%open_orchestra_user.document.user.class%'
     open_orchestra_user.repository.group:
-        class: %open_orchestra_user.repository.group.class%
+        class: '%open_orchestra_user.repository.group.class%'
         factory:
-            - @doctrine.odm.mongodb.document_manager
+            - '@doctrine.odm.mongodb.document_manager'
             - getRepository
         calls:
-            - [setAggregationQueryBuilder, [@doctrine_mongodb.odm.default_aggregation_query]]
-            - [setFilterTypeManager, [@open_orchestra_pagination.filter_type.manager]]
+            - [setAggregationQueryBuilder, ['@doctrine_mongodb.odm.default_aggregation_query']]
+            - [setFilterTypeManager, ['@open_orchestra_pagination.filter_type.manager']]
         arguments:
-            - %open_orchestra_user.document.group.class%
+            - '%open_orchestra_user.document.group.class%'
