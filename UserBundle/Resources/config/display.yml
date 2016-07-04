@@ -3,9 +3,9 @@ parameters:
 
 services:
     open_orchestra_user.display.login:
-        class: %open_orchestra_user.display.login.class%
+        class: '%open_orchestra_user.display.login.class%'
         arguments:
-            - @security.csrf.token_manager
-            - @security.token_storage
+            - '@security.csrf.token_manager'
+            - '@security.token_storage'
         tags:
             - { name: open_orchestra_display.display_block.strategy }

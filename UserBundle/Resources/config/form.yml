@@ -3,8 +3,8 @@ parameters:
 
 services:
     open_orchestra_user.type.change_user_password:
-        class: %open_orchestra_user.type.change_password.class%
+        class: '%open_orchestra_user.type.change_password.class%'
         arguments:
-            - %open_orchestra_user.document.user.class%
+            - '%open_orchestra_user.document.user.class%'
         tags:
             - { name: form.type, alias: oo_user_change_password }
