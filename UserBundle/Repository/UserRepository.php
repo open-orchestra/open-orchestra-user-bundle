@@ -36,7 +36,22 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
-     * @param RoleInterface $status
+     * @param string string         $username
+     * @param string GroupInterface $group
+     *
+     * @return array
+     */
+    public function findByUsernameWithoutGroup($username, GroupInterface $group)
+    {
+        $qb = $this->createQueryBuilder();
+        $qb->field('groups.$id')->notEqual(new \MongoId($group->getId()));
+        $qb->field('username')->equals(new \MongoRegex('/.*'.$username.'.*/i'));
+
+        return $qb->getQuery() ->execute();
+    }
+
+    /**
+     * @param RoleInterface $role
      *
      * @return bool
      */
