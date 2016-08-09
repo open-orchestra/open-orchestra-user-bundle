@@ -41,7 +41,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return array
      */
-    public function findByUsernameWithoutGroup($username, GroupInterface $group)
+    public function findByIncludedUsernameWithoutGroup($username, GroupInterface $group)
     {
         $qb = $this->createQueryBuilder();
         $qb->field('groups.$id')->notEqual(new \MongoId($group->getId()));

@@ -31,5 +31,5 @@ interface UserRepositoryInterface extends PaginationRepositoryInterface, Roleabl
      *
      * @return array
      */
-    public function findByUsernameWithoutGroup($username, GroupInterface $group);
+    public function findByIncludedUsernameWithoutGroup($username, GroupInterface $group);
 }
