@@ -2,3 +2,4 @@ open_orchestra_user:
     form:
         registration_user:
             unique_user_name: This username is already used.
+            complex_user_password: 'The password must contain at least 8 characters including 1 uppercase, 1 lowercase and 1 special character from $ @ # * & - +'
