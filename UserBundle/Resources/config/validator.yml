@@ -5,4 +5,4 @@ services:
     validator.complex_user_password:
         class: '%open_orchestra_user.validator.complex_user_password.class%'
         tags:
-            - { name: validator.constraint_validator }
+            - { name: validator.constraint_validator, alias: complex_user_password }
