@@ -2,4 +2,4 @@ open_orchestra_user:
     form:
         registration_user:
             unique_user_name: Ce nom d'utilisateur existe déjà.
-            complex_user_password: 'Le mot de passe doit contenir 8 caractères minimum dont 1 majuscule, 1 minuscule et 1 caractère spécial parmi $ @ & # * - +'
+            complex_user_password: 'Le mot de passe doit contenir 8 caractères minimum dont 1 majuscule, 1 minuscule et 1 caractère spécial parmi $ @ & _ # * - +'

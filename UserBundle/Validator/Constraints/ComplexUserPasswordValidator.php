@@ -16,11 +16,7 @@ class ComplexUserPasswordValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (strlen($value) < 8
-            || !preg_match('/[A-Z]/', $value)
-            || !preg_match('/[a-z]/', $value)
-            || !preg_match('/[$@&_#\*\-\+]/', $value)
-        ) {
+        if (!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*[$@&_#\*\-\+]).{8,}$/', $value)) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%string%', $value)
                 ->addViolation();
