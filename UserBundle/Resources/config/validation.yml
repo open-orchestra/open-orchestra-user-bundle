@@ -4,3 +4,5 @@ OpenOrchestra\UserBundle\Document\User:
             - NotBlank: { groups: [Registration, Profile]}
         firstName:
             - NotBlank: { groups: [Registration, Profile]}
+        plainPassword:
+            - OpenOrchestra\UserBundle\Validator\Constraints\ComplexUserPassword: ~
