@@ -15,6 +15,11 @@ use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 class Group extends BaseGroup
 {
     /**
+     * @ODM\Id(strategy="auto")
+     */
+    protected $id;
+
+    /**
      * @ORCHESTRA\Search(key="name")
      */
     protected $name;
@@ -22,13 +27,8 @@ class Group extends BaseGroup
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($name = '', $roles = array())
     {
-        $this->roles = array();
+        parent::__construct($name, $roles);
     }
-
-    /**
-     * @ODM\Id(strategy="auto")
-     */
-    protected $id;
 }
