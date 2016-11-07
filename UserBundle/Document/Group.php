@@ -15,12 +15,16 @@ use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 class Group extends BaseGroup
 {
     /**
-     * @ODM\Id(strategy="auto")
+     * @ODM\Id(
+     *  strategy="auto"
+     * )
      */
     protected $id;
 
     /**
-     * @ORCHESTRA\Search(key="name")
+     * @ORCHESTRA\Search(
+     *  key="name"
+     * )
      */
     protected $name;
 
