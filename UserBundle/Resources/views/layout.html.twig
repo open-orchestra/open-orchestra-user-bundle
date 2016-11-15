@@ -4,29 +4,11 @@
     {{ 'open_orchestra_user.login.title'|trans }}
 {% endblock %}
 
-{% block body_opener %}
-    <body id="login" class="animated fadeInDown dark-background">
-{% endblock %}
 
-{% block content %}
-    <div id="main" role="main">
-        <!-- MAIN CONTENT -->
-        <div id="content" class="container lockscreen">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="well no-padding">
-                        <header>
-                            <span id="logo"> <img src="{{ asset('bundles/openorchestrabackoffice/images/logo-orchestra.png') }}" alt="Open Ochestra"> </span>
-                            {{ 'open_orchestra_user.login.welcome'|trans }}
-                        </header>
+{% block body %}
+    <div id="authentication">
+        {% block fos_user_content %}
 
-                        {% block fos_user_content %}
-                        {% endblock %}
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endblock %}
     </div>
-    <script src="{{ asset('bundles/openorchestrauser/js/loginRedirection.js') }}"></script>
 {% endblock %}

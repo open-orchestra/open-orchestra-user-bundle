@@ -1,34 +1,42 @@
 {% extends 'OpenOrchestraUserBundle::layout.html.twig' %}
-{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    {% if error %}
-        <div class="alert alert-error">
-            {{ error.messageKey|trans(error.messageData) }}
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal form-login">
+        <div class="header">
+            <h4>
+                <img src="/images/logo.png" alt="logo">
+                {{ 'open_orchestra_user.login.welcome'|trans }}
+            </h4>
         </div>
-    {% endif %}
-
-    <div class="fos_user">
-        <form action="{{ path("fos_user_security_check") }}" method="post" class="smart-form client-form redirectable-form">
+        <div class="body-login">
+            {% if error %}
+                <div class="alert alert-danger text-center">
+                    {{ error.messageKey|trans(error.messageData) }}
+                </div>
+            {% endif %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            <fieldset>
-                <section>
-                    <label class="label">{{ 'security.login.username'|trans }}</label>
-                    <label class="input"> <i class="icon-append fa fa-user"></i>
-                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-                    </label>
-                </section>
+            <div class="form-group user">
+                <label  for="user" class="col-md-3 control-label">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="user" name="_username" value="{{ last_username }}" required="required">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-md-3 control-label">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                <div class="col-md-9">
+                    <input type="password" class="form-control password" id="password" name="_password" required="required">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="form-group action-buttons">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <button type="submit" class="btn btn-info">{{  'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
-                <section>
-                    <label class="label">{{ 'security.login.password'|trans }}</label>
-                    <label class="input"> <i class="icon-append fa fa-lock"></i>
-                        <input type="password" id="password" name="_password" required="required" />
-                    </label>
-                </section>
-            </fieldset>
-            <footer>
-                <input type="submit" class="btn btn-primary" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-            </footer>
-        </form>
-    </div>
+    <script src="{{ asset('bundles/openorchestrauser/js/loginRedirection.js') }}"></script>
 {% endblock %}
