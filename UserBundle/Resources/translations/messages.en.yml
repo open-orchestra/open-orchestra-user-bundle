@@ -2,22 +2,3 @@ open_orchestra_user:
     login:
         title: Login
         welcome: Welcome to Open Orchestra
-    form:
-        registration_user:
-            first_name: First name
-            last_name: Last name
-            roles: Roles
-        user:
-            firstName: First name
-            lastName: Last name
-            email: Email
-            password: Password
-            password_confirmation: Password confirmation
-            password_mismatch: Password mismatch
-            groups: Groups
-            language: Default language
-            success: The user has been updated
-    new:
-        success: The user has been created
-    update:
-        success: The user has been updated

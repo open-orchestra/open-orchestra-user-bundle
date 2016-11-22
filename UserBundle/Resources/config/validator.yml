@@ -4,5 +4,8 @@ parameters:
 services:
     validator.complex_user_password:
         class: '%open_orchestra_user.validator.complex_user_password.class%'
+        arguments:
+            - '@security.token_storage'
+            - '@security.encoder_factory'
         tags:
             - { name: validator.constraint_validator, alias: complex_user_password }

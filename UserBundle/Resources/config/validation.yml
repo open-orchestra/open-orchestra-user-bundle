@@ -1,8 +1,8 @@
 OpenOrchestra\UserBundle\Document\User:
+    constraints:
+        - OpenOrchestra\UserBundle\Validator\Constraints\ComplexUserPassword: { groups: [Registration, UpdatePassword]}
     properties:
         lastName:
             - NotBlank: { groups: [Registration, Profile]}
         firstName:
             - NotBlank: { groups: [Registration, Profile]}
-        plainPassword:
-            - OpenOrchestra\UserBundle\Validator\Constraints\ComplexUserPassword: { groups: [Registration, UpdatePassword]}

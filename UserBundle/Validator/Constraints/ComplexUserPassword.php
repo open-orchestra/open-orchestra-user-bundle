@@ -9,7 +9,9 @@ use Symfony\Component\Validator\Constraint;
  */
 class ComplexUserPassword extends Constraint
 {
-    public $message = 'open_orchestra_user.form.registration_user.complex_user_password';
+    public $messageComplexUserPassword = 'open_orchestra_user.form.registration_user.complex_user_password';
+    public $messageCurrentPasswordNeeded = 'open_orchestra_user.form.registration_user.current_password_needed';
+    public $messageCurrentPasswordIncorrect = 'open_orchestra_user.form.registration_user.current_password_incorrect';
 
     /**
      * @return string
@@ -17,5 +19,10 @@ class ComplexUserPassword extends Constraint
     public function validatedBy()
     {
         return 'complex_user_password';
+    }
+
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
     }
 }
