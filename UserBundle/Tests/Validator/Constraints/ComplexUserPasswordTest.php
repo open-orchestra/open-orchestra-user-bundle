@@ -37,7 +37,9 @@ class ComplexUserPasswordTest extends AbstractBaseTestCase
      */
     public function testMessages()
     {
-        $this->assertSame('open_orchestra_user.form.registration_user.complex_user_password', $this->constraint->message);
+        $this->assertSame('open_orchestra_user.form.registration_user.complex_user_password', $this->constraint->messageComplexUserPassword);
+        $this->assertSame('open_orchestra_user.form.registration_user.current_password_needed', $this->constraint->messageCurrentPasswordNeeded);
+        $this->assertSame('open_orchestra_user.form.registration_user.current_password_incorrect', $this->constraint->messageCurrentPasswordIncorrect);
     }
 
     /**

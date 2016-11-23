@@ -8,7 +8,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
-use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Class ComplexUserPasswordValidator
@@ -33,6 +32,7 @@ class ComplexUserPasswordValidator extends ConstraintValidator
     {
         $currentPassword = $this->context->getRoot()->get('current_password')->getData();
         $newPassword = $this->context->getRoot()->get('plainPassword')->getViewData();
+
         if ('' != $currentPassword) {
             $user = $this->tokenStorage->getToken()->getUser();
             if (!$user instanceof UserInterface) {
