@@ -37,7 +37,7 @@ class ComplexUserPasswordValidator extends ConstraintValidator
         $currentPassword = $this->context->getRoot()->get('current_password')->getData();
         $newPassword = $this->context->getRoot()->get('plainPassword')->getViewData();
 
-        if ('' != $currentPassword) {
+        if ('' !== $currentPassword) {
             $user = $this->tokenStorage->getToken()->getUser();
             if (!$user instanceof UserInterface) {
                 throw new ConstraintDefinitionException('The User object must implement the UserInterface interface.');
@@ -53,7 +53,7 @@ class ComplexUserPasswordValidator extends ConstraintValidator
                 ->atPath('plainPassword')
                 ->addViolation();
             }
-        } elseif ('' != $newPassword['first'] || '' != $newPassword['second']) {
+        } elseif ('' !== $newPassword['first'] || '' !== $newPassword['second']) {
             $this->context->buildViolation($constraint->messageCurrentUserPassword)
             ->atPath('current_password')
             ->addViolation();
