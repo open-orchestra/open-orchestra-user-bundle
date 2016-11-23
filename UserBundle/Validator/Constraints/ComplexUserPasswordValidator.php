@@ -18,6 +18,10 @@ class ComplexUserPasswordValidator extends ConstraintValidator
     private $tokenStorage;
     private $encoderFactory;
 
+    /**
+     * @param TokenStorageInterface   $tokenStorage
+     * @param EncoderFactoryInterface $encoderFactory
+     */
     public function __construct(TokenStorageInterface $tokenStorage, EncoderFactoryInterface $encoderFactory)
     {
         $this->tokenStorage = $tokenStorage;
