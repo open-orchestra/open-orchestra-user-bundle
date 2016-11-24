@@ -27,12 +27,19 @@ class ComplexUserPasswordValidatorTest extends AbstractBaseTestCase
         $this->constraint = Phake::mock('Symfony\Component\Validator\Constraint');
         $this->context = Phake::mock('Symfony\Component\Validator\Context\ExecutionContextInterface');
         $this->constraintViolationBuilder = Phake::mock('Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface');
+        $this->user = Phake::mock('Symfony\Component\Security\Core\User\UserInterface');
+        $this->token = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
+        $this->tokenStorage = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
+        $this->encoder = Phake::mock('Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface');
+        $this->encoderFactory = Phake::mock('Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface');
 
         Phake::when($this->context)->buildViolation(Phake::anyParameters())->thenReturn($this->constraintViolationBuilder);
-        Phake::when($this->constraintViolationBuilder)->setParameter(Phake::anyParameters())->thenReturn($this->constraintViolationBuilder);
+        Phake::when($this->constraintViolationBuilder)->atPath(Phake::anyParameters())->thenReturn($this->constraintViolationBuilder);
+        Phake::when($this->token)->getUser()->thenReturn($this->user);
+        Phake::when($this->tokenStorage)->getToken()->thenReturn($this->token);
+        Phake::when($this->encoderFactory)->getEncoder(Phake::anyParameters())->thenReturn($this->encoder);
 
-        $this->validator = new ComplexUserPasswordValidator();
-        $this->validator->initialize($this->context);
+        $this->validator = new ComplexUserPasswordValidator($this->tokenStorage, $this->encoderFactory);
     }
 
     /**
@@ -49,8 +56,24 @@ class ComplexUserPasswordValidatorTest extends AbstractBaseTestCase
      *
      * @dataProvider providePasswordAndViolationCount
      */
-    public function testAddViolationOrNot($password, $violationTimes)
+    public function testAddViolationOrNot($currentPassword, $password, $isOldPassword, $violationTimes)
     {
+        Phake::when($this->encoder)->isPasswordValid(Phake::anyParameters())->thenReturn($isOldPassword);
+        $root = Phake::mock('Symfony\Component\Form\FormInterface');
+        $currentPassword = Phake::mock('Symfony\Component\Form\FormInterface');
+        $plainPassword = Phake::mock('Symfony\Component\Form\FormInterface');
+        Phake::when($currentPassword)->getData()->thenReturn($currentPassword);
+        Phake::when($plainPassword)->getViewData()->thenReturn(array(
+            'first' =>$password,
+            'second' => $password
+        ));
+        Phake::when($root)->get('current_password')->thenReturn($currentPassword);
+        Phake::when($root)->get('plainPassword')->thenReturn($plainPassword);
+
+        Phake::when($this->context)->getRoot()->thenReturn($root);
+
+        $this->validator->initialize($this->context);
+
         $this->validator->validate($password, $this->constraint);
 
         Phake::verify($this->context, Phake::times($violationTimes))->buildViolation(Phake::anyParameters());
@@ -62,11 +85,13 @@ class ComplexUserPasswordValidatorTest extends AbstractBaseTestCase
     public function providePasswordAndViolationCount()
     {
         return array(
-            'At least 8 char' => array('Admin_', 1),
-            'At least 1 uppercase' => array('admin_admin', 1),
-            'At least 1 lowercase' => array('ADMIN_ADMIN', 1),
-            'At least 1 special char' => array('AdminAdmin', 1),
-            'Ok' => array('Admin_Admin', 0)
+            'no current password' => array('', 'Admin_', true, 1),
+            'bad current password' => array('fakePassword', 'Admin_', false, 2),
+            'At least 8 char' => array('fakePassword', 'Admin_', true, 1),
+            'At least 1 uppercase' => array('fakePassword', 'admin_admin', true, 1),
+            'At least 1 lowercase' => array('fakePassword', 'ADMIN_ADMIN', true, 1),
+            'At least 1 special char' => array('fakePassword', 'AdminAdmin', true, 1),
+            'Ok' => array('fakePassword', 'Admin_Admin', true, 0)
         );
     }
 }

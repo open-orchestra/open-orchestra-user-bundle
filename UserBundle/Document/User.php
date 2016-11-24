@@ -57,6 +57,20 @@ class User extends BaseUser implements UserInterface
     protected $groups;
 
     /**
+     * @var array $languageBySites
+     *
+     * @ODM\Field(type="hash")
+     */
+    protected $languageBySites = array();
+
+    /**
+     * @var bool
+     *
+     * @ODM\Field(type="boolean")
+     */
+    protected $editAllowed = false;
+
+    /**
      * Class constructor
      */
     public function __construct()
@@ -111,5 +125,56 @@ class User extends BaseUser implements UserInterface
     public function setLanguage($language)
     {
         $this->language = $language;
+    }
+
+    /**
+     * @param array $languageBySites
+     */
+    public function setLanguageBySites(array $languageBySites)
+    {
+        $this->languageBySites = $languageBySites;
+    }
+
+    /**
+     * @param string $siteId
+     * @param string $language
+     */
+    public function setLanguageBySite($siteId, $language)
+    {
+        $this->languageBySites[$siteId] = $language;
+    }
+
+    /**
+     * @param string $aliasId
+     *
+     * @return bool
+     */
+    public function hasLanguageBySite($siteId)
+    {
+        return array_key_exists($siteId, $this->languageBySites);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguageBySites()
+    {
+        return $this->languageBySites;
+    }
+
+    /**
+     * @param bool $editAllowed
+     */
+    public function setEditAllowed($editAllowed)
+    {
+        $this->editAllowed = $editAllowed;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditAllowed()
+    {
+        return $this->editAllowed;
     }
 }

@@ -3,3 +3,5 @@ open_orchestra_user:
         registration_user:
             unique_user_name: Ce nom d'utilisateur existe déjà.
             complex_user_password: 'Le mot de passe doit contenir 8 caractères minimum dont 1 majuscule, 1 minuscule et 1 caractère spécial parmi $ @ & _ # * - +'
+            current_password_needed: 'Le mot de passe courant doit être saisi pour autoriser la mise à jour'
+            current_password_incorrect: 'Cette valeur doit être le mot de passe courant.'
