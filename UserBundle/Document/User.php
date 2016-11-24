@@ -64,6 +64,13 @@ class User extends BaseUser implements UserInterface
     protected $languageBySites = array();
 
     /**
+     * @var bool
+     *
+     * @ODM\Field(type="boolean")
+     */
+    protected $editAllowed = false;
+
+    /**
      * Class constructor
      */
     public function __construct()
@@ -153,5 +160,21 @@ class User extends BaseUser implements UserInterface
     public function getLanguageBySites()
     {
         return $this->languageBySites;
+    }
+
+    /**
+     * @param bool $editAllowed
+     */
+    public function setEditAllowed($editAllowed)
+    {
+        $this->editAllowed = $editAllowed;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditAllowed()
+    {
+        return $this->editAllowed;
     }
 }
