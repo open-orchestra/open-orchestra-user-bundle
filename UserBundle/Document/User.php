@@ -17,6 +17,9 @@ use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
  */
 class User extends BaseUser implements UserInterface
 {
+    //used to avoid conflict between integer and string in languageBySites array indexation
+    CONST SITE_ID_PREFIX = 'siteId_';
+
     /**
      * @ODM\Id()
      */
@@ -141,7 +144,7 @@ class User extends BaseUser implements UserInterface
      */
     public function setLanguageBySite($siteId, $language)
     {
-        $this->languageBySites[$siteId] = $language;
+        $this->languageBySites[self::SITE_ID_PREFIX.$siteId] = $language;
     }
 
     /**
@@ -151,7 +154,7 @@ class User extends BaseUser implements UserInterface
      */
     public function hasLanguageBySite($siteId)
     {
-        return array_key_exists($siteId, $this->languageBySites);
+        return array_key_exists(self::SITE_ID_PREFIX.$siteId, $this->languageBySites);
     }
 
     /**
