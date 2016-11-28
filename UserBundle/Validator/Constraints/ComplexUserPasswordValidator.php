@@ -34,28 +34,32 @@ class ComplexUserPasswordValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $currentPassword = $this->context->getRoot()->get('current_password')->getData();
         $newPassword = $this->context->getRoot()->get('plainPassword')->getViewData();
-        if (strlen($currentPassword) > 0) {
-            $user = $this->tokenStorage->getToken()->getUser();
-            if (!$user instanceof UserInterface) {
-                throw new ConstraintDefinitionException('The User object must implement the UserInterface interface.');
-            }
-            $encoder = $this->encoderFactory->getEncoder($user);
-            if (!$encoder->isPasswordValid($user->getPassword(), $currentPassword, $user->getSalt())) {
-                $this->context->buildViolation($constraint->messageCurrentPasswordIncorrect)
+        if ($this->context->getRoot()->has('current_password')) {
+            $currentPassword = $this->context->getRoot()->get('current_password')->getData();
+            if (strlen($currentPassword) > 0) {
+                $user = $this->tokenStorage->getToken()->getUser();
+                if (!$user instanceof UserInterface) {
+                    throw new ConstraintDefinitionException('The User object must implement the UserInterface interface.');
+                }
+                $encoder = $this->encoderFactory->getEncoder($user);
+                if (!$encoder->isPasswordValid($user->getPassword(), $currentPassword, $user->getSalt())) {
+                    $this->context->buildViolation($constraint->messageCurrentPasswordIncorrect)
+                    ->atPath('current_password')
+                    ->addViolation();
+                }
+            } elseif (strlen($newPassword['first']) > 0) {
+                $this->context->buildViolation($constraint->messageCurrentUserPassword)
                 ->atPath('current_password')
                 ->addViolation();
             }
+        }
+        if (strlen($newPassword['first']) > 0) {
             if (!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*[$@&_#\*\-\+]).{8,}$/', $newPassword['first'])) {
                 $this->context->buildViolation($constraint->messageComplexUserPassword)
                 ->atPath('plainPassword')
                 ->addViolation();
             }
-        } elseif (strlen($newPassword['first']) > 0 || strlen($newPassword['second']) > 0) {
-            $this->context->buildViolation($constraint->messageCurrentUserPassword)
-            ->atPath('current_password')
-            ->addViolation();
         }
     }
 }
