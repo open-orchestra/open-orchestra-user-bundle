@@ -60,15 +60,16 @@ class ComplexUserPasswordValidatorTest extends AbstractBaseTestCase
     {
         Phake::when($this->encoder)->isPasswordValid(Phake::anyParameters())->thenReturn($isOldPassword);
         $root = Phake::mock('Symfony\Component\Form\FormInterface');
-        $currentPassword = Phake::mock('Symfony\Component\Form\FormInterface');
-        $plainPassword = Phake::mock('Symfony\Component\Form\FormInterface');
-        Phake::when($currentPassword)->getData()->thenReturn($currentPassword);
-        Phake::when($plainPassword)->getViewData()->thenReturn(array(
+        $currentPasswordFormType = Phake::mock('Symfony\Component\Form\FormInterface');
+        $plainPasswordFormType = Phake::mock('Symfony\Component\Form\FormInterface');
+        Phake::when($currentPasswordFormType)->getData()->thenReturn($currentPassword);
+        Phake::when($plainPasswordFormType)->getViewData()->thenReturn(array(
             'first' =>$password,
             'second' => $password
         ));
-        Phake::when($root)->get('current_password')->thenReturn($currentPassword);
-        Phake::when($root)->get('plainPassword')->thenReturn($plainPassword);
+        Phake::when($root)->has('current_password')->thenReturn(strlen($currentPassword) > 0);
+        Phake::when($root)->get('current_password')->thenReturn($currentPasswordFormType);
+        Phake::when($root)->get('plainPassword')->thenReturn($plainPasswordFormType);
 
         Phake::when($this->context)->getRoot()->thenReturn($root);
 

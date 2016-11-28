@@ -1,4 +1,4 @@
-s<?php
+<?php
 
 namespace OpenOrchestra\UserBundle\Validator\Constraints;
 
