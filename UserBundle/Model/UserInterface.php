@@ -10,6 +10,8 @@ use FOS\UserBundle\Model\GroupableInterface;
  */
 interface UserInterface extends BaseUserInterface, GroupableInterface
 {
+    const ENTITY_TYPE = 'user';
+
     /**
      * @return string
      */
