@@ -2,8 +2,10 @@
 
 namespace OpenOrchestra\UserBundle\Repository;
 
+use Solution\MongoAggregation\Pipeline\Stage;
+use OpenOrchestra\Repository\ReferenceAggregateFilterTrait;
+use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\Repository\AbstractAggregateRepository;
-use OpenOrchestra\Pagination\MongoTrait\PaginationTrait;
 use FOS\UserBundle\Model\GroupInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 use OpenOrchestra\UserBundle\Model\UserInterface;
@@ -13,7 +15,7 @@ use OpenOrchestra\UserBundle\Model\UserInterface;
  */
 class UserRepository extends AbstractAggregateRepository implements UserRepositoryInterface
 {
-    use PaginationTrait;
+    use ReferenceAggregateFilterTrait;
 
     /**
      * @param string $username
@@ -62,5 +64,70 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
         $user = $this->singleHydrateAggregateQuery($qa);
 
         return $user instanceof UserInterface;
+    }
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
+     *
+     * @return array
+     */
+    public function findForPaginate(PaginateFinderConfiguration $configuration)
+    {
+        $qa = $this->createAggregationQuery();
+
+        $this->filterSearch($configuration, $qa);
+
+        $order = $configuration->getOrder();
+        if (!empty($order)) {
+            $qa->sort($order);
+        }
+
+        $qa->skip($configuration->getSkip());
+        $qa->limit($configuration->getLimit());
+
+        return $this->hydrateAggregateQuery($qa);
+    }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        $qa = $this->createAggregationQuery();
+
+        return $this->countDocumentAggregateQuery($qa);
+    }
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
+     *
+     * @return int
+     */
+    public function countWithFilter(PaginateFinderConfiguration $configuration)
+    {
+        $qa = $this->createAggregationQuery();
+        $this->filterSearch($configuration, $qa);
+
+        return $this->countDocumentAggregateQuery($qa);
+    }
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
+     * @param Stage                       $qa
+     *
+     * @return array
+     */
+    protected function filterSearch(PaginateFinderConfiguration $configuration, Stage $qa)
+    {
+        $search = $configuration->getSearchIndex('search');
+        if (null !== $search && $search !== '') {
+            $filter = array('$or' =>array(
+                array('username' => new \MongoRegex('/.*'.$search.'.*/i')),
+                $this->getReferenceFilter('groups', array('name' => new \MongoRegex('/.*'.$search.'.*/i')))
+            ));
+            $qa->match($filter);
+        }
+
+        return $qa;
     }
 }

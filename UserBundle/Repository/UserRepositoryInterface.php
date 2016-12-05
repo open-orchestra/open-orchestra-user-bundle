@@ -3,13 +3,14 @@
 namespace OpenOrchestra\UserBundle\Repository;
 
 use FOS\UserBundle\Model\GroupInterface;
+use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\Pagination\Configuration\PaginationRepositoryInterface;
 use OpenOrchestra\ModelInterface\Repository\RoleableElementRepositoryInterface;
 
 /**
  * Interface UserRepositoryInterface
  */
-interface UserRepositoryInterface extends PaginationRepositoryInterface, RoleableElementRepositoryInterface
+interface UserRepositoryInterface extends RoleableElementRepositoryInterface
 {
     /**
      * @param string $username
@@ -32,4 +33,23 @@ interface UserRepositoryInterface extends PaginationRepositoryInterface, Roleabl
      * @return array
      */
     public function findByIncludedUsernameWithoutGroup($username, GroupInterface $group);
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
+     *
+     * @return array
+     */
+    public function findForPaginate(PaginateFinderConfiguration $configuration);
+
+    /**
+     * @return int
+     */
+    public function count();
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
+     *
+     * @return int
+     */
+    public function countWithFilter(PaginateFinderConfiguration $configuration);
 }
