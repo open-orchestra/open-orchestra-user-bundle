@@ -89,11 +89,47 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
+     * @param PaginateFinderConfiguration $configuration
+     * @param array                       $sitesId
+     *
+     * @return array
+     */
+    public function findForPaginateFilterBySitesId(PaginateFinderConfiguration $configuration, array $sitesId)
+    {
+        $qa = $this->createAggregationQuery();
+
+        $this->filterSearchAndSitesId($configuration, $sitesId, $qa);
+
+        $order = $configuration->getOrder();
+        if (!empty($order)) {
+            $qa->sort($order);
+        }
+
+        $qa->skip($configuration->getSkip());
+        $qa->limit($configuration->getLimit());
+
+        return $this->hydrateAggregateQuery($qa);
+    }
+
+    /**
      * @return int
      */
     public function count()
     {
         $qa = $this->createAggregationQuery();
+
+        return $this->countDocumentAggregateQuery($qa);
+    }
+
+    /**
+     * @param array $sitesId
+     *
+     * @return int
+     */
+    public function countFilterBySiteId(array $sitesId)
+    {
+        $qa = $this->createAggregationQuery();
+        $qa->match($this->getReferenceFilter('groups', $this->generateFilterSiteId($sitesId)));
 
         return $this->countDocumentAggregateQuery($qa);
     }
@@ -113,6 +149,43 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param array                       $sitesId
+     *
+     * @return int
+     */
+    public function countWithFilterAndSitesId(PaginateFinderConfiguration $configuration, array $sitesId)
+    {
+        $qa = $this->createAggregationQuery();
+        $this->filterSearchAndSitesId($configuration, $sitesId, $qa);
+
+        return $this->countDocumentAggregateQuery($qa);
+    }
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
+     * @param array                       $sitesId
+     * @param Stage                       $qa
+     *
+     * @return array
+     */
+    protected function filterSearchAndSitesId(PaginateFinderConfiguration $configuration, array $sitesId, Stage $qa)
+    {
+        $groupFilter = $this->generateFilterSiteId($sitesId);
+
+        $search = $configuration->getSearchIndex('search');
+        if (null !== $search && $search !== '') {
+            $filter = $this->generateFilterSearch($search, $groupFilter);
+        } else {
+            $filter = $this->getReferenceFilter('groups', $groupFilter);
+        }
+
+        $qa->match($filter);
+
+        return $qa;
+    }
+
+    /**
+     * @param PaginateFinderConfiguration $configuration
      * @param Stage                       $qa
      *
      * @return array
@@ -121,13 +194,40 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     {
         $search = $configuration->getSearchIndex('search');
         if (null !== $search && $search !== '') {
-            $filter = array('$or' =>array(
-                array('username' => new \MongoRegex('/.*'.$search.'.*/i')),
-                $this->getReferenceFilter('groups', array('name' => new \MongoRegex('/.*'.$search.'.*/i')))
-            ));
+            $filter = $this->generateFilterSearch($search);
             $qa->match($filter);
         }
 
         return $qa;
+    }
+
+    /**
+     * @param string $search
+     * @param array  $groupFilter
+     *
+     * @return array
+     */
+    protected function generateFilterSearch($search, $groupFilter = array())
+    {
+        $groupFilter['name'] = new \MongoRegex('/.*'.$search.'.*/i');
+        return array('$or' =>array(
+            array('username' => new \MongoRegex('/.*'.$search.'.*/i')),
+            $this->getReferenceFilter('groups', $groupFilter)
+        ));
+    }
+
+    /**
+     * @param array $sitesId
+     *
+     * @return array
+     */
+    protected function generateFilterSiteId(array $sitesId)
+    {
+        $sitesMongoId = array();
+        foreach ($sitesId as $siteId) {
+            $sitesMongoId[] = new \MongoId($siteId);
+        }
+
+        return array('site.$id' => array('$in' => $sitesMongoId));
     }
 }
