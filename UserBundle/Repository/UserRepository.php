@@ -126,7 +126,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return int
      */
-    public function countFilterBySiteId(array $sitesId)
+    public function countFilterBySitesId(array $sitesId)
     {
         $qa = $this->createAggregationQuery();
         $qa->match($this->getReferenceFilter('groups', $this->generateFilterSiteId($sitesId)));

@@ -4,7 +4,6 @@ namespace OpenOrchestra\UserBundle\Repository;
 
 use FOS\UserBundle\Model\GroupInterface;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
-use OpenOrchestra\Pagination\Configuration\PaginationRepositoryInterface;
 use OpenOrchestra\ModelInterface\Repository\RoleableElementRepositoryInterface;
 
 /**
@@ -59,7 +58,7 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
      *
      * @return int
      */
-    public function countFilterBySiteId(array $sitesId);
+    public function countFilterBySitesId(array $sitesId);
 
     /**
      * @param PaginateFinderConfiguration $configuration
