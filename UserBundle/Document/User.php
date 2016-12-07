@@ -5,7 +5,6 @@ namespace OpenOrchestra\UserBundle\Document;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\UserBundle\Model\UserInterface;
-use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 
 /**
  * Document User
@@ -27,8 +26,6 @@ class User extends BaseUser implements UserInterface
 
     /**
      * @var string $username
-     *
-     * @ORCHESTRA\Search(key="username")
      */
     protected $username;
 
@@ -55,7 +52,6 @@ class User extends BaseUser implements UserInterface
 
     /**
      * @ODM\ReferenceMany(targetDocument="FOS\UserBundle\Model\GroupInterface")
-     * @ORCHESTRA\Search(key="groups", field="groups.label", type="reference")
      */
     protected $groups;
 
