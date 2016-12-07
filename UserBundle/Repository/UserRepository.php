@@ -94,11 +94,11 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return array
      */
-    public function findForPaginateFilterBySitesId(PaginateFinderConfiguration $configuration, array $sitesId)
+    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $sitesId)
     {
         $qa = $this->createAggregationQuery();
 
-        $this->filterSearchAndSitesId($configuration, $sitesId, $qa);
+        $this->filterSearchAndSiteIds($configuration, $sitesId, $qa);
 
         $order = $configuration->getOrder();
         if (!empty($order)) {
@@ -126,7 +126,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return int
      */
-    public function countFilterBySitesId(array $sitesId)
+    public function countFilterBySiteIds(array $sitesId)
     {
         $qa = $this->createAggregationQuery();
         $qa->match($this->getReferenceFilter('groups', $this->generateFilterSiteId($sitesId)));
@@ -153,10 +153,10 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return int
      */
-    public function countWithFilterAndSitesId(PaginateFinderConfiguration $configuration, array $sitesId)
+    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId)
     {
         $qa = $this->createAggregationQuery();
-        $this->filterSearchAndSitesId($configuration, $sitesId, $qa);
+        $this->filterSearchAndSiteIds($configuration, $sitesId, $qa);
 
         return $this->countDocumentAggregateQuery($qa);
     }
@@ -168,7 +168,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return array
      */
-    protected function filterSearchAndSitesId(PaginateFinderConfiguration $configuration, array $sitesId, Stage $qa)
+    protected function filterSearchAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId, Stage $qa)
     {
         $groupFilter = $this->generateFilterSiteId($sitesId);
 

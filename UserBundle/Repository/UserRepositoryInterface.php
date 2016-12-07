@@ -46,7 +46,7 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
      *
      * @return array
      */
-    public function findForPaginateFilterBySitesId(PaginateFinderConfiguration $configuration, array $sitesId);
+    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $sitesId);
 
     /**
      * @return int
@@ -58,7 +58,7 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
      *
      * @return int
      */
-    public function countFilterBySitesId(array $sitesId);
+    public function countFilterBySiteIds(array $sitesId);
 
     /**
      * @param PaginateFinderConfiguration $configuration
@@ -73,5 +73,5 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
      *
      * @return int
      */
-    public function countWithFilterAndSitesId(PaginateFinderConfiguration $configuration, array $sitesId);
+    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId);
 }
