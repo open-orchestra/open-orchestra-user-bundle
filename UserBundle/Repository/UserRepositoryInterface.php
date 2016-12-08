@@ -76,7 +76,7 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
     public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId);
 
     /**
-     * @param array $usersId
+     * @param array $userIds
      */
-    public function removeUsers(array $usersId);
+    public function removeUsers(array $userIds);
 }
