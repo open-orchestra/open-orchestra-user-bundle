@@ -162,6 +162,25 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
+     * @param array $userIds
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     */
+    public function removeUsers(array $userIds)
+    {
+        $userMongoIds = array();
+        foreach ($userIds as $userId) {
+            $userMongoIds[] = new \MongoId($userId);
+        }
+
+        $qb = $this->createQueryBuilder();
+        $qb->remove()
+           ->field('id')->in($userMongoIds)
+           ->getQuery()
+           ->execute();
+    }
+
+    /**
      * @param PaginateFinderConfiguration $configuration
      * @param array                       $sitesId
      * @param Stage                       $qa
