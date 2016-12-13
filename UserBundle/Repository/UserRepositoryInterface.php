@@ -87,7 +87,7 @@ interface UserRepositoryInterface
     public function removeUsers(array $userIds);
 
     /**
-     * @param array $groupIds
+    * @param array $groupIds
      *
      * @return array
      */
