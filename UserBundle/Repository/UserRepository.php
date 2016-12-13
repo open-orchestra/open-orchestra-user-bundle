@@ -181,6 +181,30 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
+     * @param array $groupsId
+     *
+     * @return array
+     */
+    public function countUserByGroup(array $groupsId) {
+        array_walk($groupsId, function(&$item) {$item = new \MongoId($item);});
+        $qa = $this->createAggregationQuery();
+        $qa->project(array('_id' => 0, 'groups' => 1));
+        $qa->unwind('$groups');
+        $qa->group(array('_id' => '$groups', 'tags' => array('$sum' => 1)));
+        $qa->project(array('_id' => 0, 'groups' => '$_id', 'tags' => 1));
+        $qa->match(array('groups.$id' => array('$in' => $groupsId)));
+
+        $aggregateGroupUsers = $qa->getQuery()->aggregate()->toArray();
+        $nbrGroupsUsers = array();
+        array_walk($aggregateGroupUsers, function($item) use (&$nbrGroupsUsers) {
+            $groupId = $item['groups']['$id']->{'$id'};
+            $nbrGroupsUsers[$groupId] = $item['tags'];
+        });
+
+            return $nbrGroupsUsers;
+    }
+
+    /**
      * @param PaginateFinderConfiguration $configuration
      * @param array                       $sitesId
      * @param Stage                       $qa
@@ -242,11 +266,8 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      */
     protected function generateFilterSiteId(array $sitesId)
     {
-        $sitesMongoId = array();
-        foreach ($sitesId as $siteId) {
-            $sitesMongoId[] = new \MongoId($siteId);
-        }
+        array_walk($sitesId, function(&$item) {$item = new \MongoId($item);});
 
-        return array('site.$id' => array('$in' => $sitesMongoId));
+        return array('site.$id' => array('$in' => $sitesId));
     }
 }

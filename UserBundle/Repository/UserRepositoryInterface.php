@@ -79,4 +79,11 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
      * @param array $userIds
      */
     public function removeUsers(array $userIds);
+
+    /**
+     * @param array $groupsId
+     *
+     * @return array
+     */
+    public function countUserByGroup(array $groupsId);
 }
