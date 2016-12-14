@@ -4,12 +4,11 @@ namespace OpenOrchestra\UserBundle\Repository;
 
 use FOS\UserBundle\Model\GroupInterface;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
-use OpenOrchestra\ModelInterface\Repository\RoleableElementRepositoryInterface;
 
 /**
  * Interface UserRepositoryInterface
  */
-interface UserRepositoryInterface extends RoleableElementRepositoryInterface
+interface UserRepositoryInterface
 {
     /**
      * @param string $email
