@@ -185,23 +185,23 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return array
      */
-    public function countUserByGroup(array $groupsId) {
+    public function countsUsersByGroups(array $groupsId) {
         array_walk($groupsId, function(&$item) {$item = new \MongoId($item);});
         $qa = $this->createAggregationQuery();
+        $qa->match(array('groups.$id' => array('$in' => $groupsId)));
         $qa->project(array('_id' => 0, 'groups' => 1));
         $qa->unwind('$groups');
-        $qa->group(array('_id' => '$groups', 'tags' => array('$sum' => 1)));
-        $qa->project(array('_id' => 0, 'groups' => '$_id', 'tags' => 1));
-        $qa->match(array('groups.$id' => array('$in' => $groupsId)));
+        $qa->group(array('_id' => '$groups', 'sum' => array('$sum' => 1)));
+        $qa->project(array('_id' => 0, 'groups' => '$_id', 'sum' => 1));
 
         $aggregateGroupUsers = $qa->getQuery()->aggregate()->toArray();
         $nbrGroupsUsers = array();
         array_walk($aggregateGroupUsers, function($item) use (&$nbrGroupsUsers) {
             $groupId = $item['groups']['$id']->{'$id'};
-            $nbrGroupsUsers[$groupId] = $item['tags'];
+            $nbrGroupsUsers[$groupId] = $item['sum'];
         });
 
-            return $nbrGroupsUsers;
+        return $nbrGroupsUsers;
     }
 
     /**

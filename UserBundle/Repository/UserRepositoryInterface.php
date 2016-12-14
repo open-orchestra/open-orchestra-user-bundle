@@ -85,5 +85,5 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
      *
      * @return array
      */
-    public function countUserByGroup(array $groupsId);
+    public function countsUsersByGroups(array $groupsId);
 }
