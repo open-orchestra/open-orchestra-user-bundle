@@ -185,7 +185,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
      *
      * @return array
      */
-    public function countsUsersByGroups(array $groupsId) {
+    public function getCountsUsersByGroups(array $groupsId) {
         array_walk($groupsId, function(&$item) {$item = new \MongoId($item);});
         $qa = $this->createAggregationQuery();
         $qa->project(array('_id' => 0, 'groups' => 1));
