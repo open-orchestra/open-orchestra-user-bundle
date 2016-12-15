@@ -199,6 +199,38 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
+     * @param string $groupId
+     *
+     * @return array
+     */
+    public function findUsersByGroups($groupId) {
+        $qa = $this->createAggregationQuery();
+        $qa->match(array('groups.$id' => new \MongoId($groupId)));
+
+        return $this->hydrateAggregateQuery($qa);
+    }
+
+    /**
+     * @param string $groupId
+     * @param array  $userIds
+     *
+     * @return array
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     */
+    public function removeGroupFromNotListedUsers($groupId, array $userIds)
+    {
+        array_walk($userIds, function(&$item) {$item = new \MongoId($item);});
+        $qb = $this->createQueryBuilder();
+        $qb->updateMany()
+            ->field('groups.$id')->equals(new \MongoId($groupId))
+            ->field('_id')->notIn($userIds)
+            ->field('groups')->pull(array('$id' => new \MongoId($groupId)))
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
      * @param PaginateFinderConfiguration $configuration
      * @param array                       $siteIds
      * @param Stage                       $qa
