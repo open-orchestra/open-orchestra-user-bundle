@@ -42,11 +42,11 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
 
     /**
      * @param PaginateFinderConfiguration $configuration
-     * @param array                       $sitesId
+     * @param array                       $siteIds
      *
      * @return array
      */
-    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $sitesId);
+    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $siteIds);
 
     /**
      * @return int
@@ -54,11 +54,11 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
     public function count();
 
     /**
-     * @param array $sitesId
+     * @param array $siteIds
      *
      * @return int
      */
-    public function countFilterBySiteIds(array $sitesId);
+    public function countFilterBySiteIds(array $siteIds);
 
     /**
      * @param PaginateFinderConfiguration $configuration
@@ -69,11 +69,11 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
 
     /**
      * @param PaginateFinderConfiguration $configuration
-     * @param array                       $sitesId
+     * @param array                       $siteIds
      *
      * @return int
      */
-    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId);
+    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $siteIds);
 
     /**
      * @param array $userIds
@@ -81,9 +81,9 @@ interface UserRepositoryInterface extends RoleableElementRepositoryInterface
     public function removeUsers(array $userIds);
 
     /**
-     * @param array $groupsId
+     * @param array $groupIds
      *
      * @return array
      */
-    public function getCountsUsersByGroups(array $groupsId);
+    public function getCountsUsersByGroups(array $groupIds);
 }
