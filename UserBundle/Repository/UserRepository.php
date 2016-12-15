@@ -90,15 +90,15 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
-     * @param array                       $sitesId
+     * @param array                       $siteIds
      *
      * @return array
      */
-    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $sitesId)
+    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $siteIds)
     {
         $qa = $this->createAggregationQuery();
 
-        $this->filterSearchAndSiteIds($configuration, $sitesId, $qa);
+        $this->filterSearchAndSiteIds($configuration, $siteIds, $qa);
 
         $order = $configuration->getOrder();
         if (!empty($order)) {
@@ -122,14 +122,14 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
-     * @param array $sitesId
+     * @param array $siteIds
      *
      * @return int
      */
-    public function countFilterBySiteIds(array $sitesId)
+    public function countFilterBySiteIds(array $siteIds)
     {
         $qa = $this->createAggregationQuery();
-        $qa->match($this->getReferenceFilter('groups', $this->generateFilterSiteId($sitesId)));
+        $qa->match($this->getReferenceFilter('groups', $this->generateFilterSiteId($siteIds)));
 
         return $this->countDocumentAggregateQuery($qa);
     }
@@ -149,14 +149,14 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
-     * @param array                       $sitesId
+     * @param array                       $siteIds
      *
      * @return int
      */
-    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId)
+    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $siteIds)
     {
         $qa = $this->createAggregationQuery();
-        $this->filterSearchAndSiteIds($configuration, $sitesId, $qa);
+        $this->filterSearchAndSiteIds($configuration, $siteIds, $qa);
 
         return $this->countDocumentAggregateQuery($qa);
     }
@@ -181,15 +181,39 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
+     * @param array $groupIds
+     *
+     * @return array
+     */
+    public function getCountsUsersByGroups(array $groupIds) {
+        array_walk($groupIds, function(&$item) {$item = new \MongoId($item);});
+        $qa = $this->createAggregationQuery();
+        $qa->project(array('_id' => 0, 'groups' => 1));
+        $qa->unwind('$groups');
+        $qa->match(array('groups.$id' => array('$in' => $groupIds)));
+        $qa->group(array('_id' => '$groups', 'sum' => array('$sum' => 1)));
+        $qa->project(array('_id' => 0, 'groups' => '$_id', 'sum' => 1));
+
+        $aggregateGroupUsers = $qa->getQuery()->aggregate()->toArray();
+        $nbrGroupsUsers = array();
+        array_walk($aggregateGroupUsers, function($item) use (&$nbrGroupsUsers) {
+            $groupId = $item['groups']['$id']->{'$id'};
+            $nbrGroupsUsers[$groupId] = $item['sum'];
+        });
+
+        return $nbrGroupsUsers;
+    }
+
+    /**
      * @param PaginateFinderConfiguration $configuration
-     * @param array                       $sitesId
+     * @param array                       $siteIds
      * @param Stage                       $qa
      *
      * @return array
      */
-    protected function filterSearchAndSiteIds(PaginateFinderConfiguration $configuration, array $sitesId, Stage $qa)
+    protected function filterSearchAndSiteIds(PaginateFinderConfiguration $configuration, array $siteIds, Stage $qa)
     {
-        $groupFilter = $this->generateFilterSiteId($sitesId);
+        $groupFilter = $this->generateFilterSiteId($siteIds);
 
         $search = $configuration->getSearchIndex('search');
         if (null !== $search && $search !== '') {
@@ -236,17 +260,14 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
-     * @param array $sitesId
+     * @param array $siteIds
      *
      * @return array
      */
-    protected function generateFilterSiteId(array $sitesId)
+    protected function generateFilterSiteId(array $siteIds)
     {
-        $sitesMongoId = array();
-        foreach ($sitesId as $siteId) {
-            $sitesMongoId[] = new \MongoId($siteId);
-        }
+        array_walk($siteIds, function(&$item) {$item = new \MongoId($item);});
 
-        return array('site.$id' => array('$in' => $sitesMongoId));
+        return array('site.$id' => array('$in' => $siteIds));
     }
 }
