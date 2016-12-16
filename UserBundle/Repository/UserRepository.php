@@ -7,8 +7,6 @@ use OpenOrchestra\Repository\ReferenceAggregateFilterTrait;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\Repository\AbstractAggregateRepository;
 use FOS\UserBundle\Model\GroupInterface;
-use OpenOrchestra\ModelInterface\Model\RoleInterface;
-use OpenOrchestra\UserBundle\Model\UserInterface;
 
 /**
  * Class UserRepository
@@ -60,20 +58,6 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
         $qb->field('username')->equals(new \MongoRegex('/.*'.$username.'.*/i'));
 
         return $qb->getQuery() ->execute();
-    }
-
-    /**
-     * @param RoleInterface $role
-     *
-     * @return bool
-     */
-    public function hasElementWithRole(RoleInterface $role)
-    {
-        $qa = $this->createAggregationQuery();
-        $qa->match(array('roles' => $role->getName()));
-        $user = $this->singleHydrateAggregateQuery($qa);
-
-        return $user instanceof UserInterface;
     }
 
     /**
