@@ -12,6 +12,13 @@ use OpenOrchestra\ModelInterface\Repository\RoleableElementRepositoryInterface;
 interface UserRepositoryInterface extends RoleableElementRepositoryInterface
 {
     /**
+     * @param string $email
+     *
+     * @return \OpenOrchestra\UserBundle\Document\User
+     */
+    public function findOneByEmail($email);
+
+    /**
      * @param string $username
      *
      * @return \OpenOrchestra\UserBundle\Document\User

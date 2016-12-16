@@ -28,6 +28,16 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
+     * @param string $email
+     *
+     * @return \OpenOrchestra\UserBundle\Document\User
+     */
+    public function findOneByEmail($email)
+    {
+        return $this->findOneBy(array('email' => $email));
+    }
+
+    /**
      * @param string GroupInterface $group
      *
      * @return array
