@@ -61,6 +61,13 @@ interface UserInterface extends BaseUserInterface, GroupableInterface
     public function getLanguageBySites();
 
     /**
+     * @param string $siteId
+     *
+     * @return string
+     */
+    public function getLanguageBySite($siteId);
+
+    /**
      * @param bool $editAllowed
      */
     public function setEditAllowed($editAllowed);
