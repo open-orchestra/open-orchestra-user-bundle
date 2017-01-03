@@ -164,7 +164,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @param string $siteId
      *
-     * @return string
+     * @return string|null
      */
     public function getLanguageBySite($siteId)
     {

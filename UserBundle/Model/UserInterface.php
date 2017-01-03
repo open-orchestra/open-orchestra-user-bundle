@@ -63,7 +63,7 @@ interface UserInterface extends BaseUserInterface, GroupableInterface
     /**
      * @param string $siteId
      *
-     * @return string
+     * @return string|null
      */
     public function getLanguageBySite($siteId);
 
