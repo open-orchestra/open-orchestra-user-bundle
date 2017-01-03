@@ -92,4 +92,21 @@ interface UserRepositoryInterface
      * @return array
      */
     public function getCountsUsersByGroups(array $groupIds);
+
+    /**
+     * @param string $groupId
+     *
+     * @return array
+     */
+    public function findUsersByGroups($groupId);
+
+    /**
+     * @param string $groupId
+     * @param array  $userIds
+     *
+     * @return array
+     *
+     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     */
+    public function removeGroupFromNotListedUsers($groupId, array $userIds);
 }
