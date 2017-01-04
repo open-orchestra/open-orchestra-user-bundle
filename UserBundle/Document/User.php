@@ -144,7 +144,7 @@ class User extends BaseUser implements UserInterface
     }
 
     /**
-     * @param string $aliasId
+     * @param string $siteId
      *
      * @return bool
      */
@@ -159,6 +159,20 @@ class User extends BaseUser implements UserInterface
     public function getLanguageBySites()
     {
         return $this->languageBySites;
+    }
+
+    /**
+     * @param string $siteId
+     *
+     * @return string|null
+     */
+    public function getLanguageBySite($siteId)
+    {
+        if ($this->hasLanguageBySite($siteId)) {
+            return $this->languageBySites[self::SITE_ID_PREFIX.$siteId];
+        }
+
+        return null;
     }
 
     /**
