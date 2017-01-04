@@ -14,7 +14,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
  */
 class LoginStrategy extends AbstractStrategy
 {
-    const LOGIN = 'login';
+    const NAME = 'login';
 
     protected $tokenManager;
     protected $securityContext;
@@ -38,7 +38,7 @@ class LoginStrategy extends AbstractStrategy
      */
     public function support(ReadBlockInterface $block)
     {
-        return self::LOGIN == $block->getComponent();
+        return self::NAME == $block->getComponent();
     }
 
     /**
@@ -68,7 +68,7 @@ class LoginStrategy extends AbstractStrategy
     /**
      * @param ReadBlockInterface $block
      *
-     * @return Array
+     * @return array
      */
     public function getCacheTags(ReadBlockInterface $block)
     {

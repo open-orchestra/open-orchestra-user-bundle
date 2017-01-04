@@ -44,7 +44,7 @@ class OpenOrchestraUserExtension extends Extension
     protected function updateBlockParameter(ContainerBuilder $container)
     {
         $blockType = array(
-            LoginStrategy::LOGIN,
+            LoginStrategy::NAME,
         );
 
         $blocksAlreadySet = array();
