@@ -195,7 +195,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
             $nbrGroupsUsers[$groupId] = $item['sum'];
         });
 
-        return $nbrGroupsUsers;
+        return array_merge(array_combine($groupIds, array_fill(0, count($groupIds), 0)), $nbrGroupsUsers);
     }
 
     /**
