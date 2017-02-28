@@ -21,7 +21,7 @@ class Group extends BaseGroup
     protected $id;
 
     /**
-     * @string
+     * @param string
      */
     protected $name;
 
