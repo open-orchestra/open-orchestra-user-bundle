@@ -4,7 +4,6 @@ namespace OpenOrchestra\UserBundle\Document;
 
 use FOS\UserBundle\Model\Group as BaseGroup;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 
 /**
  * @ODM\Document(
@@ -22,9 +21,7 @@ class Group extends BaseGroup
     protected $id;
 
     /**
-     * @ORCHESTRA\Search(
-     *  key="name"
-     * )
+     * @param string
      */
     protected $name;
 
