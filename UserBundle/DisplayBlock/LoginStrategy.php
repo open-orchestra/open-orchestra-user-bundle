@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\UserBundle\DisplayBlock;
 
-use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractStrategy;
+use OpenOrchestra\DisplayBundle\DisplayBlock\Strategies\AbstractDisplayBlockStrategy;
 use OpenOrchestra\ModelInterface\Model\ReadBlockInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 /**
  * Class LoginStrategy
  */
-class LoginStrategy extends AbstractStrategy
+class LoginStrategy extends AbstractDisplayBlockStrategy
 {
     const NAME = 'login';
 
