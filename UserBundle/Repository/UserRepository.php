@@ -184,32 +184,51 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
-     * @param string $groupId
+     * @param PaginateFinderConfiguration $configuration
+     * @param string                      $groupId
      *
      * @return array
      */
-    public function findUsersByGroups($groupId) {
+    public function findUsersByGroupsForPaginate(PaginateFinderConfiguration $configuration, $groupId)
+    {
         $qa = $this->createAggregationQuery();
         $qa->match(array('groups.$id' => new \MongoId($groupId)));
+
+        $order = $configuration->getOrder();
+        if (!empty($order)) {
+            $qa->sort($order);
+        }
+
+        $qa->skip($configuration->getSkip());
+        $qa->limit($configuration->getLimit());
 
         return $this->hydrateAggregateQuery($qa);
     }
 
     /**
      * @param string $groupId
-     * @param array  $userIds
+     *
+     * @return int
+     */
+    public function countFilterByGroups($groupId)
+    {
+        $qa = $this->createAggregationQuery();
+        $qa->match(array('groups.$id' => new \MongoId($groupId)));
+
+        return $this->countDocumentAggregateQuery($qa);
+    }
+
+    /**
+     * @param string $userId
+     * @param string $groupId
      *
      * @return array
-     *
-     * @throws \Doctrine\ODM\MongoDB\MongoDBException
      */
-    public function removeGroupFromNotListedUsers($groupId, array $userIds)
+    public function removeGroup($userId, $groupId)
     {
-        array_walk($userIds, function(&$item) {$item = new \MongoId($item);});
         $qb = $this->createQueryBuilder();
         $qb->updateMany()
-            ->field('groups.$id')->equals(new \MongoId($groupId))
-            ->field('_id')->notIn($userIds)
+            ->field('_id')->equals(new \MongoId($userId))
             ->field('groups')->pull(array('$id' => new \MongoId($groupId)))
             ->getQuery()
             ->execute();
