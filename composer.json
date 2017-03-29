@@ -11,7 +11,7 @@
 
   "require": {
     "php": "~5.6.0",
-    "friendsofsymfony/user-bundle": "~2.0.0@alpha",
+    "friendsofsymfony/user-bundle": "2.0.0.beta2",
     "open-orchestra/open-orchestra-libs": "self.version"
   },
 
