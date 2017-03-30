@@ -86,19 +86,25 @@ interface UserRepositoryInterface
     public function getCountsUsersByGroups(array $groupIds);
 
     /**
-     * @param string $groupId
+     * @param PaginateFinderConfiguration $configuration
+     * @param string                      $groupId
      *
      * @return array
      */
-    public function findUsersByGroups($groupId);
+    public function findUsersByGroupsForPaginate(PaginateFinderConfiguration $configuration, $groupId);
 
     /**
      * @param string $groupId
-     * @param array  $userIds
+     *
+     * @return int
+     */
+    public function countFilterByGroups($groupId);
+
+    /**
+     * @param string $userId
+     * @param string $groupId
      *
      * @return array
-     *
-     * @throws \Doctrine\ODM\MongoDB\MongoDBException
      */
-    public function removeGroupFromNotListedUsers($groupId, array $userIds);
+    public function removeGroup($userId, $groupId);
 }
