@@ -12,7 +12,7 @@ use OpenOrchestra\UserBundle\Validator\Constraints\ComplexUserPasswordValidator;
 class ComplexUserPasswordValidatorTest extends AbstractBaseTestCase
 {
     /**
-     * @var ContentTemplateValidator
+     * @var ComplexUserPasswordValidator
      */
     protected $validator;
     protected $context;

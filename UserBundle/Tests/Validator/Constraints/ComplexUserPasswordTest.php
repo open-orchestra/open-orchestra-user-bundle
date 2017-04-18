@@ -3,7 +3,6 @@
 namespace OpenOrchestra\Backoffice\Tests\Validator\Constraints;
 
 use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
-use Symfony\Component\Validator\Constraint;
 use OpenOrchestra\UserBundle\Validator\Constraints\ComplexUserPassword;
 
 /**
@@ -12,7 +11,7 @@ use OpenOrchestra\UserBundle\Validator\Constraints\ComplexUserPassword;
 class ComplexUserPasswordTest extends AbstractBaseTestCase
 {
     /**
-     * @var ContentTemplate
+     * @var ComplexUserPassword
      */
     protected $constraint;
 
