@@ -1,39 +1,34 @@
 {% extends 'OpenOrchestraUserBundle::layout.html.twig' %}
 
 {% block fos_user_content %}
-    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal form-login">
-        <div class="header">
-            <h4>
-                <img src="/images/logo.png" alt="logo">
-                {{ 'open_orchestra_user.login.welcome'|trans }}
-            </h4>
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
+        {% if error %}
+            <div class="alert alert-danger text-center">
+                {{ error.messageKey|trans(error.messageData) }}
+            </div>
+        {% endif %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="form-group user">
+            <label  for="user" class="col-md-3 control-label">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="user" name="_username" value="{{ last_username }}" required="required">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
         </div>
-        <div class="body-login">
-            {% if error %}
-                <div class="alert alert-danger text-center">
-                    {{ error.messageKey|trans(error.messageData) }}
-                </div>
-            {% endif %}
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            <div class="form-group user">
-                <label  for="user" class="col-md-3 control-label">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" id="user" name="_username" value="{{ last_username }}" required="required">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                </div>
+        <div class="form-group">
+            <label for="password" class="col-md-3 control-label">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+            <div class="col-md-9">
+                <input type="password" class="form-control password" id="password" name="_password" required="required">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <p class="">
+                    <a href="{{ path('fos_user_resetting_request') }}">{{ 'open_orchestra_user.login.forgot_password'|trans }}</a>
+                </p>
             </div>
-            <div class="form-group">
-                <label for="password" class="col-md-3 control-label">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-                <div class="col-md-9">
-                    <input type="password" class="form-control password" id="password" name="_password" required="required">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                </div>
-            </div>
-            <div class="form-group action-buttons">
-                <label class="col-md-3 control-label"></label>
-                <div class="col-md-9">
-                    <button type="submit" class="btn btn-info">{{  'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
-                </div>
+        </div>
+        <div class="form-group action-buttons">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-9">
+                <button type="submit" class="btn btn-info">{{  'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
             </div>
         </div>
     </form>

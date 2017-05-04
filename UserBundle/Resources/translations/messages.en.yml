@@ -2,3 +2,4 @@ open_orchestra_user:
     login:
         title: Login
         welcome: Welcome to Open Orchestra
+        forgot_password: Forgot password ?

@@ -1,0 +1,14 @@
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request form-horizontal">
+        <div class="form-group">
+            <label for="username" class="col-md-3 control-label">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control password" id="username" name="username" required="required">
+            </div>
+        </div>
+        <div class="form-group action-buttons">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-9">
+                <input type="submit" class="btn btn-info" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+            </div>
+        </div>
+</form>

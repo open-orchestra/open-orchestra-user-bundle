@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{{ form_start(form, {'style': 'horizontal', 'label_col': 3, 'widget_col': 9, 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'form-horizontal fos_user_resetting_reset' } }) }}
+    {{ form_widget(form) }}
+    <div class="form-group action-buttons">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <input type="submit" class="btn btn-info"  value="{{ 'resetting.reset.submit'|trans }}" />
+        </div>
+    </div>
+{{ form_end(form, {'no_submit_button': true, 'form_legend': false}) }}
