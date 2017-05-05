@@ -7,8 +7,19 @@
 
 {% block body %}
     <div id="authentication">
-        {% block fos_user_content %}
+        <div class="form-login">
+            <div class="header">
+                <h4>
+                    <img src="/images/logo.png" alt="logo">
+                    {{ 'open_orchestra_user.login.welcome'|trans }}
+                </h4>
+            </div>
+            <div class="body-login">
+                {% block fos_user_content %}
 
-        {% endblock %}
+                {% endblock %}
+            </div>
+        </div>
+
     </div>
 {% endblock %}
