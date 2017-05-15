@@ -1,0 +1,8 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    <p>
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'FOSUserBundle')|nl2br }}
+    </p>
+    <p class="text-center"><a href="{{ path('fos_user_security_login') }}"> {{ 'open_orchestra_user.login.title'|trans }}</a></p>
+{% endblock %}

@@ -1,5 +1,5 @@
 open_orchestra_user:
     login:
-        title: Login
+        title: Me connecter
         welcome: Bienvenue sur Open Orchestra
         forgot_password: Mot de passe oublié ?
