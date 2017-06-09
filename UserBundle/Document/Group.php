@@ -13,6 +13,8 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  */
 class Group extends BaseGroup
 {
+    CONST PREFIX_GROUP_NAME = "group-";
+
     /**
      * @ODM\Id(
      *  strategy="auto"
@@ -28,8 +30,8 @@ class Group extends BaseGroup
     /**
      * Constructor
      */
-    public function __construct($name = '', $roles = array())
+    public function __construct($roles = array())
     {
-        parent::__construct($name, $roles);
+        parent::__construct(uniqid(self::PREFIX_GROUP_NAME), $roles);
     }
 }

@@ -69,15 +69,16 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      * @param array                       $siteIds
      *
      * @return array
      */
-    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $siteIds)
+    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, $language, array $siteIds)
     {
         $qa = $this->createAggregationQuery();
 
-        $this->filterSearchAndSiteIds($configuration, $siteIds, $qa);
+        $this->filterSearchAndSiteIds($configuration, $language, $siteIds, $qa);
 
         $order = $configuration->getOrder();
         if (!empty($order)) {
@@ -128,14 +129,15 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      * @param array                       $siteIds
      *
      * @return int
      */
-    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $siteIds)
+    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, $language, array $siteIds)
     {
         $qa = $this->createAggregationQuery();
-        $this->filterSearchAndSiteIds($configuration, $siteIds, $qa);
+        $this->filterSearchAndSiteIds($configuration, $language, $siteIds, $qa);
 
         return $this->countDocumentAggregateQuery($qa);
     }
@@ -236,18 +238,19 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      * @param array                       $siteIds
      * @param Stage                       $qa
      *
      * @return array
      */
-    protected function filterSearchAndSiteIds(PaginateFinderConfiguration $configuration, array $siteIds, Stage $qa)
+    protected function filterSearchAndSiteIds(PaginateFinderConfiguration $configuration, $language, array $siteIds, Stage $qa)
     {
         $groupFilter = $this->generateFilterSiteId($siteIds);
 
         $search = $configuration->getSearchIndex('search');
         if (null !== $search && $search !== '') {
-            $filter = $this->generateFilterSearch($search, $groupFilter);
+            $filter = $this->generateFilterSearch($search, $language, $groupFilter);
         } else {
             $filter = $this->getReferenceFilter('groups', $groupFilter);
         }
@@ -259,15 +262,16 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      * @param Stage                       $qa
      *
      * @return array
      */
-    protected function filterSearch(PaginateFinderConfiguration $configuration, Stage $qa)
+    protected function filterSearch(PaginateFinderConfiguration $configuration, $language, Stage $qa)
     {
         $search = $configuration->getSearchIndex('search');
         if (null !== $search && $search !== '') {
-            $filter = $this->generateFilterSearch($search);
+            $filter = $this->generateFilterSearch($search, $language);
             $qa->match($filter);
         }
 
@@ -276,13 +280,15 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param string $search
+     * @param string $language
      * @param array  $groupFilter
      *
      * @return array
      */
-    protected function generateFilterSearch($search, $groupFilter = array())
+    protected function generateFilterSearch($search, $language, $groupFilter = array())
     {
-        $groupFilter['name'] = new \MongoRegex('/.*'.$search.'.*/i');
+        $groupFilter['labels.' . $language] =  new \MongoRegex('/.*'.$search.'.*/i');
+
         return array('$or' =>array(
             array('username' => new \MongoRegex('/.*'.$search.'.*/i')),
             $this->getReferenceFilter('groups', $groupFilter)
