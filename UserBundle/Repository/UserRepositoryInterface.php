@@ -33,18 +33,20 @@ interface UserRepositoryInterface
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      *
      * @return array
      */
-    public function findForPaginate(PaginateFinderConfiguration $configuration);
+    public function findForPaginate(PaginateFinderConfiguration $configuration, $language);
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      * @param array                       $siteIds
      *
      * @return array
      */
-    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, array $siteIds);
+    public function findForPaginateFilterBySiteIds(PaginateFinderConfiguration $configuration, $language, array $siteIds);
 
     /**
      * @return int
@@ -60,18 +62,20 @@ interface UserRepositoryInterface
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      *
      * @return int
      */
-    public function countWithFilter(PaginateFinderConfiguration $configuration);
+    public function countWithFilter(PaginateFinderConfiguration $configuration, $language);
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      * @param array                       $siteIds
      *
      * @return int
      */
-    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, array $siteIds);
+    public function countWithFilterAndSiteIds(PaginateFinderConfiguration $configuration, $language, array $siteIds);
 
     /**
      * @param array $userIds

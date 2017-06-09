@@ -47,14 +47,15 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      *
      * @return array
      */
-    public function findForPaginate(PaginateFinderConfiguration $configuration)
+    public function findForPaginate(PaginateFinderConfiguration $configuration, $language)
     {
         $qa = $this->createAggregationQuery();
 
-        $this->filterSearch($configuration, $qa);
+        $this->filterSearch($configuration, $language, $qa);
 
         $order = $configuration->getOrder();
         if (!empty($order)) {
@@ -116,13 +117,14 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
 
     /**
      * @param PaginateFinderConfiguration $configuration
+     * @param string                      $language
      *
      * @return int
      */
-    public function countWithFilter(PaginateFinderConfiguration $configuration)
+    public function countWithFilter(PaginateFinderConfiguration $configuration, $language)
     {
         $qa = $this->createAggregationQuery();
-        $this->filterSearch($configuration, $qa);
+        $this->filterSearch($configuration, $language, $qa);
 
         return $this->countDocumentAggregateQuery($qa);
     }
