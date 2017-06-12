@@ -76,4 +76,14 @@ interface UserInterface extends BaseUserInterface, GroupableInterface
      * @return bool
      */
     public function isEditAllowed();
+
+    /**
+     * @param bool $accountLocked
+     */
+    public function setAccountLocked($accountLocked);
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAccountLocked();
 }

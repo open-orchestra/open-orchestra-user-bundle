@@ -70,6 +70,13 @@ class User extends BaseUser implements UserInterface
     protected $editAllowed = false;
 
     /**
+     * @var bool
+     *
+     * @ODM\Field(type="boolean")
+     */
+    protected $accountLocked = false;
+
+    /**
      * Class constructor
      */
     public function __construct()
@@ -189,5 +196,29 @@ class User extends BaseUser implements UserInterface
     public function isEditAllowed()
     {
         return $this->editAllowed;
+    }
+
+    /**
+     * @param bool $accountLocked
+     */
+    public function setAccountLocked($accountLocked)
+    {
+        $this->accountLocked = $accountLocked;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAccountLocked()
+    {
+        return $this->accountLocked;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAccountNonLocked()
+    {
+        return !$this->accountLocked;
     }
 }
