@@ -241,8 +241,6 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     /**
      * @param array          $users
      * @param GroupInterface $group
-     *
-     * @return array
      */
     public function addGroup(array $users, GroupInterface $group)
     {
