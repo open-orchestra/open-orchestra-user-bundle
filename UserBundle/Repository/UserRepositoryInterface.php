@@ -111,4 +111,10 @@ interface UserRepositoryInterface
      * @return array
      */
     public function removeGroup($userId, $groupId);
+
+    /**
+     * @param array          $users
+     * @param GroupInterface $group
+     */
+    public function addGroup(array $users, GroupInterface $group);
 }

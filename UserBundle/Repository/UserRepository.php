@@ -36,7 +36,7 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
     }
 
     /**
-     * @param string GroupInterface $group
+     * @param GroupInterface $group
      *
      * @return array
      */
@@ -234,6 +234,21 @@ class UserRepository extends AbstractAggregateRepository implements UserReposito
         $qb->updateMany()
             ->field('_id')->equals(new \MongoId($userId))
             ->field('groups')->pull(array('$id' => new \MongoId($groupId)))
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param array          $users
+     * @param GroupInterface $group
+     */
+    public function addGroup(array $users, GroupInterface $group)
+    {
+        array_walk($users, function(&$item) {$item = new \MongoId($item->getId());});
+        $qb = $this->createQueryBuilder();
+        $qb->updateMany()
+            ->field('_id')->in($users)
+            ->field('groups')->push($group)
             ->getQuery()
             ->execute();
     }
